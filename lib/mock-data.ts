@@ -89,6 +89,26 @@ export const whoIsOnUsers: User[] = [
     distance: '3 mi',
     photosCount: 11,
   },
+  {
+    id: '7',
+    username: 'Nora',
+    age: 32,
+    location: 'Glendale',
+    imageUrl: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&h=600&fit=crop&crop=face',
+    isOnline: true,
+    distance: '7 mi',
+    photosCount: 14,
+  },
+  {
+    id: '8',
+    username: 'Bella',
+    age: 24,
+    location: 'Echo Park',
+    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=600&fit=crop&crop=face',
+    isOnline: true,
+    distance: '4 mi',
+    photosCount: 10,
+  },
 ];
 
 // Mock users for "Who Viewed Me" section
@@ -133,6 +153,26 @@ export const whoViewedMeUsers: User[] = [
     photosCount: 8,
     viewedTime: '2 days ago',
   },
+  {
+    id: '11',
+    username: 'Ruby',
+    age: 30,
+    location: 'Playa Vista',
+    imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=face',
+    distance: '10 mi',
+    photosCount: 12,
+    viewedTime: '3 days ago',
+  },
+  {
+    id: '12',
+    username: 'Hazel',
+    age: 23,
+    location: 'Hermosa Beach',
+    imageUrl: 'https://images.unsplash.com/photo-1488716820095-cbe80883c496?w=400&h=600&fit=crop&crop=face',
+    distance: '13 mi',
+    photosCount: 6,
+    viewedTime: '3 days ago',
+  },
 ];
 
 // Mock users for "Newest Matches" section
@@ -175,6 +215,26 @@ export const newestMatches: User[] = [
     imageUrl: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=600&fit=crop&crop=face',
     distance: '9 mi',
     photosCount: 7,
+    isLiked: true,
+  },
+  {
+    id: '15',
+    username: 'Scarlett',
+    age: 28,
+    location: 'Burbank',
+    imageUrl: 'https://images.unsplash.com/photo-1524638431109-93d95c968f03?w=400&h=600&fit=crop&crop=face',
+    distance: '14 mi',
+    photosCount: 11,
+    isLiked: true,
+  },
+  {
+    id: '16',
+    username: 'Violet',
+    age: 31,
+    location: 'Studio City',
+    imageUrl: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&h=600&fit=crop&crop=face',
+    distance: '12 mi',
+    photosCount: 9,
     isLiked: true,
   },
 ];

@@ -14,10 +14,10 @@ import { Users, Eye, Heart, Calendar } from "lucide-react";
 
 export default function Home() {
   // Get fixed selections for display (avoids hydration issues)
-  const displayedOnlineUsers = whoIsOnUsers.slice(0, 6);
-  const displayedViewers = whoViewedMeUsers.slice(0, 4);
-  const displayedMatches = newestMatches.slice(0, 4);
-  const displayedEvents = hotDates.slice(0, 3);
+  const displayedOnlineUsers = whoIsOnUsers.slice(0, 8);
+  const displayedViewers = whoViewedMeUsers.slice(0, 6);
+  const displayedMatches = newestMatches.slice(0, 6);
+  const displayedEvents = hotDates.slice(0, 4);
 
   return (
     <div className="min-h-screen bg-background">
@@ -25,7 +25,7 @@ export default function Home() {
       
       {/* Main Content */}
       <main className="lg:ml-64 p-4 sm:p-6 lg:p-8">
-        <div className="max-w-7xl mx-auto space-y-8">
+        <div className="max-w-screen-2xl mx-auto space-y-8">
           
           {/* Welcome Section */}
           <div className="relative overflow-hidden rounded-3xl glass p-8 border border-white/10">
@@ -59,7 +59,7 @@ export default function Home() {
               count={whoIsOnUsers.length}
               variant="glass"
             />
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
               {displayedOnlineUsers.map((user) => (
                 <UserCard
                   key={user.id}
@@ -80,7 +80,7 @@ export default function Home() {
               count={whoViewedMeUsers.length}
               variant="glass"
             />
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
               {displayedViewers.map((user) => (
                 <UserCard
                   key={user.id}
@@ -100,7 +100,7 @@ export default function Home() {
               count={newestMatches.length}
               variant="glass"
             />
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
               {displayedMatches.map((user) => (
                 <UserCard
                   key={user.id}
@@ -121,7 +121,7 @@ export default function Home() {
               count={hotDates.length}
               variant="glass"
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {displayedEvents.map((event) => (
                 <HotDateCard key={event.id} {...event} />
               ))}
