@@ -38,10 +38,10 @@ export default function Home() {
                 Your perfect match is just a swipe away.
               </p>
               <div className="flex flex-wrap gap-4">
-                <button className="px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold transition-colors">
-                  Start Swiping
+                <button className="px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground hover:text-primary-foreground rounded-xl font-semibold transition-colors">
+                  Start Swinging
                 </button>
-                <button className="px-6 py-3 border border-border hover:bg-accent text-foreground rounded-xl font-semibold transition-colors">
+                <button className="px-6 py-3 border border-border hover:bg-accent text-foreground hover:text-accent-foreground rounded-xl font-semibold transition-colors">
                   Browse Events
                 </button>
               </div>
