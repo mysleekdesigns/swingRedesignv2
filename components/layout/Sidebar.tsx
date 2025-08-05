@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import {
   Home,
@@ -61,11 +62,15 @@ export function Sidebar() {
       >
         <div className="flex flex-col h-full">
           <div className="p-6 border-b border-sidebar-border">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg gold-gradient flex items-center justify-center">
-                <span className="text-xl font-bold text-primary-foreground">S</span>
-              </div>
-              <span className="text-2xl font-bold text-sidebar-foreground">Swing</span>
+            <div className="flex items-center">
+              <Image
+                src="/images/swing.png"
+                alt="Swing Dating"
+                width={180}
+                height={60}
+                className="h-14 w-auto"
+                priority
+              />
             </div>
           </div>
 

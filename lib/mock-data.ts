@@ -34,7 +34,7 @@ export const whoIsOnUsers: User[] = [
     username: 'Sarah',
     age: 28,
     location: 'Downtown LA',
-    imageUrl: 'https://images.unsplash.com/photo-1494790108755-2616b332c3db?w=400&h=600&fit=crop&crop=face',
+    imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=600&fit=crop&crop=face',
     isOnline: true,
     distance: '2 mi',
     photosCount: 8,

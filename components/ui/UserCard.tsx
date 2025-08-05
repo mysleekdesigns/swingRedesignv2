@@ -29,10 +29,9 @@ export function UserCard({
   variant = 'default',
 }: UserCardProps) {
   const aspectRatio = variant === 'compact' ? 'aspect-square' : 'aspect-[3/4]';
-  const cardSize = variant === 'featured' ? 'scale-105' : 'scale-100';
   
   return (
-    <div className={`group relative overflow-hidden rounded-2xl bg-card hover-lift cursor-pointer transition-all duration-300 ${cardSize} ${
+    <div className={`group relative overflow-hidden rounded-2xl bg-card hover-lift cursor-pointer transition-all duration-300 ${
       variant === 'featured' ? 'ring-2 ring-primary/20 shadow-lg shadow-primary/10' : ''
     }`}>
       <div className={`${aspectRatio} relative overflow-hidden`}>

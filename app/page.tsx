@@ -31,7 +31,7 @@ export default function Home() {
           <div className="relative overflow-hidden rounded-3xl glass p-8 border border-white/10">
             <div className="relative z-10">
               <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 tracking-tight">
-                Welcome to <span className="text-primary">Swing</span>
+                Welcome to Swing
               </h1>
               <p className="text-lg text-muted-foreground mb-6 max-w-2xl">
                 Discover meaningful connections with like-minded people in your area. 
