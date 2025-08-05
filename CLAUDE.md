@@ -51,3 +51,40 @@ The project is configured for shadcn/ui with:
 - No test framework is currently configured
 - Uses Turbopack for faster development builds
 - Tailwind CSS is configured with CSS variables for theming
+
+## Workflow
+
+### Task Coordination
+- **ALL tasks** (redesigns, features, bug fixes) go through the `project-manager` agent first
+- The project manager researches, plans, and delegates to specialized sub-agents
+- Sub-agents work in parallel within their specific domains
+- Each sub-agent reports completion back to the project manager
+
+### Quality Standards
+- **Strict TypeScript**: All code must use proper types and pass type checking
+- **Modular Architecture**: Components must be reusable and well-structured
+- **Linting Required**: All code must pass `npm run lint` before task completion
+- **Type Checking**: All code must pass `npx tsc --noEmit` before task completion
+- **Minimal Files**: Create only necessary files and folders for the task
+
+### Research Tools
+- **Context7**: For internal documentation and codebase understanding
+- **Firecrawl**: For web scraping, competitor analysis, and design inspiration
+- **Playwright**: For interactive testing and screenshots (when available)
+
+### Sub-Agent Specializations
+- `ui-ux-designer`: Design decisions, user flows, visual modernization
+- `frontend-developer`: React/Next.js implementation, TypeScript code
+- `marketing-expert`: Conversion optimization, SEO, messaging
+- `content-strategist`: Information architecture, copywriting
+- `accessibility-specialist`: WCAG compliance, inclusive design
+- `performance-analyst`: Core Web Vitals, speed optimization
+
+### Development Process
+1. User request → Project Manager
+2. Project Manager researches and creates task plan
+3. Project Manager delegates to appropriate sub-agents
+4. Sub-agents work in parallel, staying within expertise
+5. Each sub-agent runs quality checks before completion
+6. Project Manager verifies all work passes linting/type checking
+7. Task marked complete only after all checks pass
