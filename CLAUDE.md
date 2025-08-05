@@ -88,3 +88,7 @@ The project is configured for shadcn/ui with:
 5. Each sub-agent runs quality checks before completion
 6. Project Manager verifies all work passes linting/type checking
 7. Task marked complete only after all checks pass
+
+## Claude Coding Restrictions
+
+- I never want Claude doing any coding. I always want the project manager and the appropriate sub agents working on every task I ask, any bug to fix, any new feature to add. Claude stop trying to code yourself.

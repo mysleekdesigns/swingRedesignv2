@@ -18,6 +18,7 @@ import {
   X,
   Menu,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 interface NavItem {
   icon: React.ElementType;
@@ -93,6 +94,7 @@ export function Sidebar() {
           </nav>
 
           <div className="p-4 border-t border-sidebar-border space-y-1">
+            <ThemeToggle variant="sidebar" />
             {secondaryItems.map((item) => (
               <Link
                 key={item.label}
