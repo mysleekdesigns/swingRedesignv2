@@ -28,7 +28,7 @@ export function UserCard({
   showActions = false,
   variant = 'default',
 }: UserCardProps) {
-  const aspectRatio = variant === 'compact' ? 'aspect-square' : 'aspect-[3/4]';
+  const aspectRatio = variant === 'compact' ? 'aspect-[4/5]' : 'aspect-[3/4]';
   
   return (
     <div className={`group relative overflow-hidden rounded-2xl bg-card hover-lift cursor-pointer transition-all duration-300 ${
@@ -84,7 +84,7 @@ export function UserCard({
         )}
         
         {/* Enhanced content area with better typography */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+        <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
           <div className="space-y-2">
             <h3 className="text-xl font-bold text-white tracking-tight leading-tight">
               {username}, <span className={variant === 'featured' ? 'text-primary' : 'text-white'}>{age}</span>

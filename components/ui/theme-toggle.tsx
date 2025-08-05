@@ -125,9 +125,9 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
           "flex items-center gap-3 px-3 py-2.5 rounded-lg",
           "text-sidebar-foreground transition-all",
           "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-          "focus:outline-none focus:ring-2 focus:ring-sidebar-ring focus:ring-offset-2",
-          "focus:ring-offset-sidebar-background",
+          "focus:outline-none",
           "w-full",
+          "theme-toggle-no-border",
           className
         )}
         aria-label={`Switch to ${currentTheme === 'light' ? 'dark' : 'light'} theme`}

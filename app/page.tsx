@@ -14,7 +14,7 @@ import { Users, Eye, Heart, Calendar } from "lucide-react";
 
 export default function Home() {
   // Get fixed selections for display (avoids hydration issues)
-  const displayedOnlineUsers = whoIsOnUsers.slice(0, 8);
+  const displayedOnlineUsers = whoIsOnUsers.slice(0, 6);
   const displayedViewers = whoViewedMeUsers.slice(0, 6);
   const displayedMatches = newestMatches.slice(0, 6);
   const displayedEvents = hotDates.slice(0, 4);
@@ -28,7 +28,7 @@ export default function Home() {
         <div className="max-w-screen-2xl mx-auto space-y-8">
           
           {/* Welcome Section */}
-          <div className="relative overflow-hidden rounded-3xl glass p-8 border border-white/10">
+          <div className="relative overflow-hidden rounded-3xl section-glass p-8">
             <div className="relative z-10">
               <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 tracking-tight">
                 Welcome to Swing
@@ -59,7 +59,7 @@ export default function Home() {
               count={whoIsOnUsers.length}
               variant="glass"
             />
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
               {displayedOnlineUsers.map((user) => (
                 <UserCard
                   key={user.id}
@@ -137,19 +137,19 @@ export default function Home() {
 
           {/* Stats Section */}
           <section className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="glass rounded-2xl p-6 text-center border border-white/10">
+            <div className="section-glass rounded-2xl p-6 text-center">
               <div className="text-3xl font-bold text-primary mb-2">2.5K+</div>
-              <div className="text-sm text-muted-foreground font-medium">Active Members</div>
+              <div className="text-sm text-muted-foreground font-medium">Members Online Now</div>
             </div>
-            <div className="glass rounded-2xl p-6 text-center border border-white/10">
+            <div className="section-glass rounded-2xl p-6 text-center">
               <div className="text-3xl font-bold text-primary mb-2">150+</div>
               <div className="text-sm text-muted-foreground font-medium">Events This Month</div>
             </div>
-            <div className="glass rounded-2xl p-6 text-center border border-white/10">
+            <div className="section-glass rounded-2xl p-6 text-center">
               <div className="text-3xl font-bold text-primary mb-2">95%</div>
-              <div className="text-sm text-muted-foreground font-medium">Success Rate</div>
+              <div className="text-sm text-muted-foreground font-medium">Successful Connections</div>
             </div>
-            <div className="glass rounded-2xl p-6 text-center border border-white/10">
+            <div className="section-glass rounded-2xl p-6 text-center">
               <div className="text-3xl font-bold text-primary mb-2">24/7</div>
               <div className="text-sm text-muted-foreground font-medium">Support Available</div>
             </div>

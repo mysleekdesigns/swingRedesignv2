@@ -234,4 +234,36 @@
   .dark .accent-glow:hover::before {
     opacity: 1;
   }
+  
+  /* Enhanced section header glass for better visibility */
+  .section-glass {
+    backdrop-filter: blur(8px);
+    background-color: oklch(0.97 0 0 / 90%);
+    border: 1px solid oklch(0.90 0 0 / 60%);
+    box-shadow: 0 2px 8px oklch(0 0 0 / 5%);
+  }
+  
+  /* Dark theme section glass - maintain premium effects */
+  .dark .section-glass {
+    backdrop-filter: blur(16px);
+    background-color: oklch(1 0 0 / 5%);
+    border: 1px solid oklch(1 0 0 / 10%);
+    box-shadow: 0 0 20px oklch(0.75 0.23 85 / 5%);
+  }
+  
+  /* Remove all borders from theme toggle */
+  .theme-toggle-no-border {
+    outline: none !important;
+    border: none !important;
+  }
+  
+  .theme-toggle-no-border:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  
+  .dark .theme-toggle-no-border:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
 }

@@ -21,7 +21,7 @@ export function SectionHeader({
   
   const variantClasses = {
     default: "bg-card rounded-xl p-4 border border-border/50",
-    glass: "glass rounded-2xl p-6 border border-white/10",
+    glass: "section-glass rounded-2xl p-6",
     minimal: "border-b border-border/30 pb-4"
   };
 
