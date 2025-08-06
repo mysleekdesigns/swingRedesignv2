@@ -43,14 +43,32 @@ This is a Next.js 15 application using the App Router with the following key cha
 The project is configured for shadcn/ui with:
 - Components location: `@/components`
 - UI components: `@/components/ui`
-- Utilities: `@/lib/utils`
+- Layout components: `@/components/layout`
+- Utilities: `@/lib/utils` (includes `cn()` for className merging)
 - Icon library: Lucide React
+
+### Styling System
+- Tailwind CSS v4 with CSS variables for theming
+- Dark mode support with `.dark` class variant
+- Custom glass effects and golden accent theme
+- OKLCH color space for modern color management
+- Custom utilities in `app/globals.css`
+
+## Configuration
+
+### Next.js Config
+- Image optimization enabled for `images.unsplash.com` and `plus.unsplash.com`
+- Turbopack enabled for faster development builds
+
+### TypeScript Config
+- Strict mode enabled
+- Path alias `@/*` configured
+- Target: ES2017
 
 ## Notes
 
 - No test framework is currently configured
-- Uses Turbopack for faster development builds
-- Tailwind CSS is configured with CSS variables for theming
+- ESLint configured with Next.js recommended rules
 
 ## Workflow
 
@@ -92,3 +110,7 @@ The project is configured for shadcn/ui with:
 ## Claude Coding Restrictions
 
 - I never want Claude doing any coding. I always want the project manager and the appropriate sub agents working on every task I ask, any bug to fix, any new feature to add. Claude stop trying to code yourself.
+
+## Best Practices
+
+- Always kill Next.js servers after completing a task

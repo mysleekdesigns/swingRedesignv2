@@ -14,11 +14,10 @@ import { Users, Eye, Heart, Calendar } from "lucide-react";
 
 export default function Home() {
   // Get fixed selections for display (avoids hydration issues)
-  // Display 8 users for single row layout on large screens
-  const displayedOnlineUsers = whoIsOnUsers.slice(0, 8);
-  const displayedViewers = whoViewedMeUsers.slice(0, 8);
-  const displayedMatches = newestMatches.slice(0, 8);
-  const displayedEvents = hotDates.slice(0, 4);
+  const displayedOnlineUsers = whoIsOnUsers.slice(0, 12);
+  const displayedViewers = whoViewedMeUsers.slice(0, 12);
+  const displayedMatches = newestMatches.slice(0, 12);
+  const displayedEvents = hotDates.slice(0, 8);
 
   return (
     <div className="min-h-screen bg-background">
@@ -26,8 +25,7 @@ export default function Home() {
       
       {/* Main Content */}
       <main className="lg:ml-64 p-4 sm:p-6 lg:p-8">
-        {/* Removed max-width constraint for full-width layout on xlarge screens */}
-        <div className="w-full space-y-8">
+        <div className="max-w-screen-2xl mx-auto space-y-8">
           
           {/* Welcome Section */}
           <div className="relative overflow-hidden rounded-3xl section-glass p-8">
@@ -61,8 +59,7 @@ export default function Home() {
               count={whoIsOnUsers.length}
               variant="glass"
             />
-            {/* Grid layout: 8 columns on xl and above screens for single row display */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
               {displayedOnlineUsers.map((user) => (
                 <UserCard
                   key={user.id}
@@ -78,13 +75,12 @@ export default function Home() {
           <section>
             <SectionHeader
               title="Who Viewed Me"
-              subtitle="Recent profile visitors - someone's interested\!"
+              subtitle="Recent profile visitors - someone's interested!"
               icon={Eye}
               count={whoViewedMeUsers.length}
               variant="glass"
             />
-            {/* Grid layout: 8 columns on xl and above screens for single row display */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
               {displayedViewers.map((user) => (
                 <UserCard
                   key={user.id}
@@ -104,8 +100,7 @@ export default function Home() {
               count={newestMatches.length}
               variant="glass"
             />
-            {/* Grid layout: 8 columns on xl and above screens for single row display */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
               {displayedMatches.map((user) => (
                 <UserCard
                   key={user.id}
@@ -126,8 +121,7 @@ export default function Home() {
               count={hotDates.length}
               variant="glass"
             />
-            {/* Grid layout: responsive from 1 to 4 columns for full-width display */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {displayedEvents.map((event) => (
                 <HotDateCard key={event.id} {...event} />
               ))}
