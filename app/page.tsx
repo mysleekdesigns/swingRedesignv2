@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { UserCard } from "@/components/ui/UserCard";
 import { HotDateCard } from "@/components/ui/HotDateCard";
@@ -13,12 +14,36 @@ import {
 import { Users, Eye, Heart, Calendar } from "lucide-react";
 
 export default function Home() {
-  // Get fixed selections for display (avoids hydration issues)
-  // Display 8 users for single row layout on large screens
-  const displayedOnlineUsers = whoIsOnUsers.slice(0, 8);
-  const displayedViewers = whoViewedMeUsers.slice(0, 8);
-  const displayedMatches = newestMatches.slice(0, 8);
-  const displayedEvents = hotDates.slice(0, 4);
+  // Screen width detection for responsive image count
+  const [screenWidth, setScreenWidth] = useState<number>(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    // Set initial screen width
+    setScreenWidth(window.innerWidth);
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Determine image count based on screen width breakpoints
+  // ≥1960px: 8 images, 1000-1959px: 6 images, 780-999px: 4 images, 640-779px: 3 images, <640px: 2 images
+  const imageCount = screenWidth >= 1960 ? 8 : 
+                    screenWidth >= 1000 ? 6 : 
+                    screenWidth >= 780 ? 4 : 
+                    screenWidth >= 640 ? 3 : 2;
+
+  // Get dynamic selections based on screen width to match grid layout
+  const displayedOnlineUsers = whoIsOnUsers.slice(0, imageCount);
+  const displayedViewers = whoViewedMeUsers.slice(0, imageCount);
+  const displayedMatches = newestMatches.slice(0, imageCount);
+  const displayedEvents = hotDates.slice(0, 4); // Hot Dates stays at 4
 
   return (
     <div className="min-h-screen bg-background">
@@ -61,8 +86,8 @@ export default function Home() {
               count={whoIsOnUsers.length}
               variant="glass"
             />
-            {/* Grid layout: 8 columns on xl and above screens for single row display */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4">
+            {/* Grid layout: 2 images (<640px), 3 images (640-779px), 4 images (780-999px), 6 images (1000-1959px), 8 images (≥1960px) */}
+            <div className="grid grid-cols-2 min-[640px]:grid-cols-3 min-[780px]:grid-cols-4 min-[1000px]:grid-cols-6 min-[1960px]:grid-cols-8 gap-4">
               {displayedOnlineUsers.map((user) => (
                 <UserCard
                   key={user.id}
@@ -78,13 +103,13 @@ export default function Home() {
           <section>
             <SectionHeader
               title="Who Viewed Me"
-              subtitle="Recent profile visitors - someone's interested\!"
+              subtitle="Recent profile visitors - someone's interested\\!"
               icon={Eye}
               count={whoViewedMeUsers.length}
               variant="glass"
             />
-            {/* Grid layout: 8 columns on xl and above screens for single row display */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4">
+            {/* Grid layout: 2 images (<640px), 3 images (640-779px), 4 images (780-999px), 6 images (1000-1959px), 8 images (≥1960px) */}
+            <div className="grid grid-cols-2 min-[640px]:grid-cols-3 min-[780px]:grid-cols-4 min-[1000px]:grid-cols-6 min-[1960px]:grid-cols-8 gap-4">
               {displayedViewers.map((user) => (
                 <UserCard
                   key={user.id}
@@ -104,8 +129,8 @@ export default function Home() {
               count={newestMatches.length}
               variant="glass"
             />
-            {/* Grid layout: 8 columns on xl and above screens for single row display */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4">
+            {/* Grid layout: 2 images (<640px), 3 images (640-779px), 4 images (780-999px), 6 images (1000-1959px), 8 images (≥1960px) */}
+            <div className="grid grid-cols-2 min-[640px]:grid-cols-3 min-[780px]:grid-cols-4 min-[1000px]:grid-cols-6 min-[1960px]:grid-cols-8 gap-4">
               {displayedMatches.map((user) => (
                 <UserCard
                   key={user.id}
