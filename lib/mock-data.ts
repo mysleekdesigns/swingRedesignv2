@@ -27,6 +27,32 @@ export interface HotDate {
   price?: string;
 }
 
+export interface Convention {
+  id: string;
+  name: string;
+  description: string;
+  date: string;
+  location: string;
+  imageUrl: string;
+  attendeeCount: number;
+  category: "lifestyle" | "educational" | "social" | "wellness";
+  price?: string;
+  featured?: boolean;
+}
+
+// Sample convention data
+export const featuredConvention: Convention = {
+  id: "sc2025",
+  name: "SwingerCon 2025: Connections & Freedom",
+  description: "The premier lifestyle convention featuring workshops, social events, and networking opportunities for the swinging community. Join us for three days of education, connection, and celebration.",
+  date: "2025-09-15",
+  location: "Las Vegas Convention Center",
+  imageUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop",
+  attendeeCount: 1200,
+  category: "lifestyle",
+  price: "$299",
+  featured: true
+};
 // Mock users for "Who's On" section
 export const whoIsOnUsers: User[] = [
   {

@@ -13,7 +13,7 @@ import {
   hotDates,
   featuredConvention
 } from "@/lib/mock-data";
-import { Users, Eye, Heart, Calendar, MapPin, DollarSign, Shield, Zap, Star, CheckCircle } from "lucide-react";
+import { Users, Eye, Heart, Calendar, MapPin, DollarSign } from "lucide-react";
 
 export default function Home() {
   // Screen width detection for responsive image count
@@ -59,81 +59,17 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Welcome Section - 25% on desktop */}
             <div className="lg:w-1/4 lg:flex-shrink-0">
-              <div className="relative overflow-hidden rounded-3xl section-glass p-8 h-full">
-                <div className="relative z-10 h-full flex flex-col">
-                  <div className="mb-6">
-                    <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 tracking-tight">
-                      Welcome to Swing
-                    </h1>
-                    <p className="text-lg text-muted-foreground mb-6">
-                      Discover meaningful connections with like-minded people in your area. 
-                      Your perfect match is just a swipe away.
-                    </p>
-                  </div>
-
-                  {/* Features Section */}
-                  <div className="flex-1 mb-6">
-                    <div className="space-y-4">
-                      <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                          <Shield className="w-4 h-4 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-foreground text-sm mb-1">100% Safe & Verified</h3>
-                          <p className="text-xs text-muted-foreground">ID verified profiles and secure connections</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                          <Zap className="w-4 h-4 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-foreground text-sm mb-1">Instant Matching</h3>
-                          <p className="text-xs text-muted-foreground">AI-powered matches based on your preferences</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                          <Star className="w-4 h-4 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-foreground text-sm mb-1">Premium Experience</h3>
-                          <p className="text-xs text-muted-foreground">Exclusive events and VIP member benefits</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                          <Users className="w-4 h-4 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-foreground text-sm mb-1">Active Community</h3>
-                          <p className="text-xs text-muted-foreground">Join thousands of members online now</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Community Stats */}
-                    <div className="mt-6 pt-4 border-t border-border/50">
-                      <div className="grid grid-cols-2 gap-4 text-center">
-                        <div>
-                          <div className="text-xl font-bold text-primary">2.5K+</div>
-                          <div className="text-xs text-muted-foreground">Online Now</div>
-                        </div>
-                        <div>
-                          <div className="text-xl font-bold text-primary">95%</div>
-                          <div className="text-xs text-muted-foreground">Success Rate</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Buttons */}
+              <div className="relative overflow-hidden rounded-3xl section-glass p-8">
+                <div className="relative z-10">
+                  <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 tracking-tight">
+                    Welcome to Swing
+                  </h1>
+                  <p className="text-lg text-muted-foreground mb-6 max-w-2xl">
+                    Discover meaningful connections with like-minded people in your area. 
+                    Your perfect match is just a swipe away.
+                  </p>
                   <div className="flex flex-wrap gap-4">
-                    <button className="px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground hover:text-primary-foreground rounded-xl font-semibold transition-colors flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4" />
+                    <button className="px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground hover:text-primary-foreground rounded-xl font-semibold transition-colors">
                       Start Swinging
                     </button>
                     <button className="px-6 py-3 border border-border hover:bg-accent text-foreground hover:text-accent-foreground rounded-xl font-semibold transition-colors">
