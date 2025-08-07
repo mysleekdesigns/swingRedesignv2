@@ -11,10 +11,9 @@ import {
   whoViewedMeUsers, 
   newestMatches, 
   hotDates,
-  featuredConvention,
-  featuredCouple
+  featuredConvention
 } from "@/lib/mock-data";
-import { Users, Eye, Heart, Calendar, MapPin, DollarSign, CheckCircle } from "lucide-react";
+import { Users, Eye, Heart, Calendar, MapPin, DollarSign, Shield, Zap, Star, CheckCircle } from "lucide-react";
 
 export default function Home() {
   // Screen width detection for responsive image count
@@ -56,95 +55,100 @@ export default function Home() {
         {/* Removed max-width constraint for full-width layout on xlarge screens */}
         <div className="w-full space-y-8">
           
-          {/* Featured Couple and Convention Sections - 25/75 Split */}
+          {/* Welcome and Convention Sections - 25/75 Split */}
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-            {/* Featured Couple Section - 25% on desktop */}
+            {/* Welcome Section - 25% on desktop */}
             <div className="lg:w-1/4 lg:flex-shrink-0">
-              <div className="relative overflow-hidden rounded-3xl section-glass p-6 h-96">
+              <div className="relative overflow-hidden rounded-3xl section-glass p-8 h-full">
                 <div className="relative z-10 h-full flex flex-col">
-                  <div className="mb-4">
-                    <div className="inline-block w-fit px-3 py-1.5 rounded-full text-sm font-semibold mb-3 bg-primary/20 text-primary border border-primary/30">
-                      Couple of the Month
-                    </div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 tracking-tight">
-                      Featured Swinger Couple
+                  <div className="mb-6">
+                    <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 tracking-tight">
+                      Welcome to Swing
                     </h1>
-                    <h2 className="text-xl font-semibold text-primary mb-3">
-                      {featuredCouple.names}
-                    </h2>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      {featuredCouple.description}
+                    <p className="text-lg text-muted-foreground mb-6">
+                      Discover meaningful connections with like-minded people in your area. 
+                      Your perfect match is just a swipe away.
                     </p>
                   </div>
 
-                  {/* Couple Info */}
-                  <div className="flex-1 mb-4">
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-2">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-lg bg-primary/20 flex items-center justify-center">
-                          <MapPin className="w-3 h-3 text-primary" />
+                  {/* Features Section */}
+                  <div className="flex-1 mb-6">
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+                          <Shield className="w-4 h-4 text-primary" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground text-xs mb-1">{featuredCouple.location}</h3>
-                          <p className="text-xs text-muted-foreground">Ages: {featuredCouple.age}</p>
+                          <h3 className="font-semibold text-foreground text-sm mb-1">100% Safe & Verified</h3>
+                          <p className="text-xs text-muted-foreground">ID verified profiles and secure connections</p>
                         </div>
                       </div>
                       
-                      <div className="flex items-start gap-2">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-lg bg-primary/20 flex items-center justify-center">
-                          <Calendar className="w-3 h-3 text-primary" />
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+                          <Zap className="w-4 h-4 text-primary" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground text-xs mb-1">Member Since</h3>
-                          <p className="text-xs text-muted-foreground">{featuredCouple.joinDate}</p>
+                          <h3 className="font-semibold text-foreground text-sm mb-1">Instant Matching</h3>
+                          <p className="text-xs text-muted-foreground">AI-powered matches based on your preferences</p>
                         </div>
                       </div>
                       
-                      <div className="flex items-start gap-2">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-lg bg-primary/20 flex items-center justify-center">
-                          <Users className="w-3 h-3 text-primary" />
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+                          <Star className="w-4 h-4 text-primary" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground text-xs mb-1">Specialty</h3>
-                          <p className="text-xs text-muted-foreground">{featuredCouple.specialty}</p>
+                          <h3 className="font-semibold text-foreground text-sm mb-1">Premium Experience</h3>
+                          <p className="text-xs text-muted-foreground">Exclusive events and VIP member benefits</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+                          <Users className="w-4 h-4 text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground text-sm mb-1">Active Community</h3>
+                          <p className="text-xs text-muted-foreground">Join thousands of members online now</p>
                         </div>
                       </div>
                     </div>
 
-                    {/* Stats */}
-                    <div className="mt-4 pt-3 border-t border-border/50">
-                      <div className="grid grid-cols-2 gap-3 text-center">
+                    {/* Community Stats */}
+                    <div className="mt-6 pt-4 border-t border-border/50">
+                      <div className="grid grid-cols-2 gap-4 text-center">
                         <div>
-                          <div className="text-lg font-bold text-primary">{featuredCouple.eventsOrganized}</div>
-                          <div className="text-xs text-muted-foreground">Events</div>
+                          <div className="text-xl font-bold text-primary">2.5K+</div>
+                          <div className="text-xs text-muted-foreground">Online Now</div>
                         </div>
                         <div>
-                          <div className="text-lg font-bold text-primary">{featuredCouple.communityPoints}</div>
-                          <div className="text-xs text-muted-foreground">Points</div>
+                          <div className="text-xl font-bold text-primary">95%</div>
+                          <div className="text-xs text-muted-foreground">Success Rate</div>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Buttons */}
-                  <div className="flex flex-wrap gap-2">
-                    <button className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold transition-colors flex items-center gap-2 text-sm">
-                      <CheckCircle className="w-3 h-3" />
-                      View Profile
+                  <div className="flex flex-wrap gap-4">
+                    <button className="px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground hover:text-primary-foreground rounded-xl font-semibold transition-colors flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4" />
+                      Start Swinging
                     </button>
-                    <button className="px-4 py-2 border border-border hover:bg-accent text-foreground hover:text-accent-foreground rounded-xl font-semibold transition-colors text-sm">
-                      Send Message
+                    <button className="px-6 py-3 border border-border hover:bg-accent text-foreground hover:text-accent-foreground rounded-xl font-semibold transition-colors">
+                      Browse Events
                     </button>
                   </div>
                 </div>
-                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-16 h-16 bg-primary/5 rounded-full blur-2xl" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl" />
               </div>
             </div>
             
             {/* Convention Section - 75% on desktop */}
             <div className="lg:w-3/4 lg:flex-shrink-0">
-              <div className="relative overflow-hidden rounded-3xl section-glass p-8 h-96">
+              <div className="relative overflow-hidden rounded-3xl section-glass p-8 h-full">
                 <div className="flex flex-col lg:flex-row gap-6 h-full">
                   {/* Text Content - Left Side */}
                   <div className="lg:w-1/2 lg:pr-6">
@@ -251,7 +255,7 @@ export default function Home() {
           <section>
             <SectionHeader
               title="Who Viewed Me"
-              subtitle="Recent profile visitors - someone's interested\!"
+              subtitle="Recent profile visitors - someone's interested!"
               icon={Eye}
               count={whoViewedMeUsers.length}
               variant="glass"

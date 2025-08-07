@@ -40,20 +40,6 @@ export interface Convention {
   featured?: boolean;
 }
 
-export interface FeaturedCouple {
-  id: string;
-  names: string;
-  age: string;
-  location: string;
-  imageUrl: string;
-  joinDate: string;
-  eventsOrganized: number;
-  communityPoints: number;
-  specialty: string;
-  description: string;
-  achievements: string[];
-  currentEvent?: string;
-}
 // Sample convention data
 export const featuredConvention: Convention = {
   id: "sc2025",
@@ -67,26 +53,7 @@ export const featuredConvention: Convention = {
   price: "$299",
   featured: true
 };
-
-// Featured Swinger Couple of the Month
-export const featuredCouple: FeaturedCouple = {
-  id: "fc-august-2025",
-  names: "Alex & Jamie",
-  age: "32 & 29",
-  location: "Beverly Hills, CA",
-  imageUrl: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&h=800&fit=crop",
-  joinDate: "January 2023",
-  eventsOrganized: 15,
-  communityPoints: 2850,
-  specialty: "Newcomer Mentoring",
-  description: "Alex and Jamie have been incredible community builders since joining Swing. They specialize in welcoming new couples and organizing inclusive events that help everyone feel comfortable and connected.",
-  achievements: [
-    "Top Event Organizer 2024",
-    "Community Choice Award",
-    "Newcomer Mentor Champion"
-  ],
-  currentEvent: "Sunset Beach Welcome Party - Aug 15th"
-};// Mock users for "Who's On" section
+// Mock users for "Who's On" section
 export const whoIsOnUsers: User[] = [
   {
     id: '1',
