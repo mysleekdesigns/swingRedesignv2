@@ -36,10 +36,10 @@ export default function Home() {
   }, []);
 
   // Determine image count based on screen width breakpoints
-  // ≥1960px: 8 images, 1000-1959px: 6 images, 780-999px: 4 images, 640-779px: 3 images, <640px: 2 images
-  const imageCount = screenWidth >= 1960 ? 8 : 
-                    screenWidth >= 1000 ? 6 : 
-                    screenWidth >= 780 ? 4 : 
+  // ≥1536px: 8 images, 1024-1535px: 6 images, 768-1023px: 4 images, 640-767px: 3 images, <640px: 2 images
+  const imageCount = screenWidth >= 1536 ? 8 : 
+                    screenWidth >= 1024 ? 6 : 
+                    screenWidth >= 768 ? 4 : 
                     screenWidth >= 640 ? 3 : 2;
 
   // Get dynamic selections based on screen width to match grid layout
@@ -52,7 +52,7 @@ export default function Home() {
       <Sidebar />
       
       {/* Main Content */}
-      <main className="min-[1600px]:ml-64 p-4 sm:p-6 lg:p-8">
+      <main className="2xl:ml-64 p-4 sm:p-6 lg:p-8">
         {/* Removed max-width constraint for full-width layout on xlarge screens */}
         <div className="w-full space-y-8">
           
@@ -146,8 +146,8 @@ export default function Home() {
               count={whoIsOnUsers.length}
               variant="glass"
             />
-            {/* Grid layout: 2 images (<640px), 3 images (640-779px), 4 images (780-999px), 6 images (1000-1959px), 8 images (≥1960px) */}
-            <div className="grid grid-cols-2 min-[640px]:grid-cols-3 min-[780px]:grid-cols-4 min-[1000px]:grid-cols-6 min-[1960px]:grid-cols-8 gap-4">
+            {/* Grid layout: 2 images (<640px), 3 images (640-767px), 4 images (768-1023px), 6 images (1024-1535px), 8 images (≥1536px) */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-4">
               {displayedOnlineUsers.map((user) => (
                 <UserCard
                   key={user.id}
@@ -168,8 +168,8 @@ export default function Home() {
               count={whoViewedMeUsers.length}
               variant="glass"
             />
-            {/* Grid layout: 2 images (<640px), 3 images (640-779px), 4 images (780-999px), 6 images (1000-1959px), 8 images (≥1960px) */}
-            <div className="grid grid-cols-2 min-[640px]:grid-cols-3 min-[780px]:grid-cols-4 min-[1000px]:grid-cols-6 min-[1960px]:grid-cols-8 gap-4">
+            {/* Grid layout: 2 images (<640px), 3 images (640-767px), 4 images (768-1023px), 6 images (1024-1535px), 8 images (≥1536px) */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-4">
               {displayedViewers.map((user) => (
                 <UserCard
                   key={user.id}
@@ -189,8 +189,8 @@ export default function Home() {
               count={newestMatches.length}
               variant="glass"
             />
-            {/* Grid layout: 2 images (<640px), 3 images (640-779px), 4 images (780-999px), 6 images (1000-1959px), 8 images (≥1960px) */}
-            <div className="grid grid-cols-2 min-[640px]:grid-cols-3 min-[780px]:grid-cols-4 min-[1000px]:grid-cols-6 min-[1960px]:grid-cols-8 gap-4">
+            {/* Grid layout: 2 images (<640px), 3 images (640-767px), 4 images (768-1023px), 6 images (1024-1535px), 8 images (≥1536px) */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-4">
               {displayedMatches.map((user) => (
                 <UserCard
                   key={user.id}

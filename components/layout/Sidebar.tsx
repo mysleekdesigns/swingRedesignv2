@@ -51,13 +51,13 @@ export function Sidebar() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="min-[1600px]:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-sidebar text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
+        className="2xl:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-sidebar text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-sidebar border-r border-sidebar-border transform transition-transform duration-300 min-[1600px]:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 w-64 bg-sidebar border-r border-sidebar-border transform transition-transform duration-300 2xl:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -112,7 +112,7 @@ export function Sidebar() {
 
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-30 min-[1600px]:hidden"
+          className="fixed inset-0 bg-black/50 z-30 2xl:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
