@@ -65,7 +65,7 @@ export function Sidebar() {
           <div className="p-6 border-b border-sidebar-border">
             <div className="flex items-center">
               <Image
-                src="/images/swing.png"
+                src="/images/Swing.png"
                 alt="Swing Dating"
                 width={180}
                 height={60}
