@@ -2,12 +2,11 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 
-type Theme = 'light' | 'dark' | 'bubble-gum'
+type Theme = 'light' | 'dark'
 
 interface ThemeContextType {
   theme: Theme
   toggleTheme: () => void
-  setTheme: (theme: Theme) => void
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
@@ -23,50 +22,22 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const initialTheme = savedTheme || systemTheme
     
     setTheme(initialTheme)
-    
-    // Apply initial theme classes
-    document.documentElement.classList.remove('dark', 'bubble-gum')
-    if (initialTheme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else if (initialTheme === 'bubble-gum') {
-      document.documentElement.classList.add('bubble-gum')
-    }
+    document.documentElement.classList.toggle('dark', initialTheme === 'dark')
   }, [])
 
   const toggleTheme = () => {
     // Only allow theme changes after mount to prevent SSR issues
     if (!mounted) return
     
-    // Cycle through three themes: light -> dark -> bubble-gum -> light
-    let newTheme: Theme
-    if (theme === 'light') {
-      newTheme = 'dark'
-    } else if (theme === 'dark') {
-      newTheme = 'bubble-gum'
-    } else {
-      newTheme = 'light'
-    }
-    
-    handleSetTheme(newTheme)
-  }
-  
-  const handleSetTheme = (newTheme: Theme) => {
-    if (!mounted) return
-    
+    const newTheme = theme === 'light' ? 'dark' : 'light'
     setTheme(newTheme)
     localStorage.setItem('theme', newTheme)
-    
-    // Apply theme classes
-    document.documentElement.classList.remove('dark', 'bubble-gum')
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else if (newTheme === 'bubble-gum') {
-      document.documentElement.classList.add('bubble-gum')
-    }
+    document.documentElement.classList.toggle('dark', newTheme === 'dark')
   }
+
   // Always provide context, even during SSR
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme: handleSetTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   )

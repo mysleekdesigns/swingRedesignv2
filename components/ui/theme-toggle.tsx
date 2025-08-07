@@ -1,9 +1,15 @@
 'use client'
 
-import { Moon, Sun } from 'lucide-react'
+import { Moon, Sun, Palette } from 'lucide-react'
 import { useSafeTheme } from '@/lib/theme-context'
 import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 
 interface ThemeToggleProps {
   className?: string
@@ -12,7 +18,7 @@ interface ThemeToggleProps {
 
 export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps) {
   const [mounted, setMounted] = useState(false)
-  const [fallbackTheme, setFallbackTheme] = useState<'light' | 'dark'>('light')
+  const [fallbackTheme, setFallbackTheme] = useState<'light' | 'dark' | 'bubble-gum'>('light')
 
   // Always call the safe hook - returns null if context unavailable
   const themeContext = useSafeTheme()
@@ -29,42 +35,51 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
 
     // Only initialize fallback if context is not available
     try {
-      const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
+      const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | 'bubble-gum' | null
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
       const initialTheme = savedTheme || systemTheme
       
       setFallbackTheme(initialTheme)
-      document.documentElement.classList.toggle('dark', initialTheme === 'dark')
+      document.documentElement.classList.remove('dark', 'bubble-gum')
+      if (initialTheme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else if (initialTheme === 'bubble-gum') {
+        document.documentElement.classList.add('bubble-gum')
+      }
     } catch {
       // Even localStorage might fail in some environments
       setFallbackTheme('light')
     }
   }, [mounted, hasContextError, themeContext])
 
-  const handleToggle = () => {
+  const handleThemeChange = (newTheme: 'light' | 'dark' | 'bubble-gum') => {
     if (!mounted) return
 
     if (themeContext && !hasContextError) {
-      // Use context toggle function when available
+      // Use context setTheme function when available
       try {
-        themeContext.toggleTheme()
+        themeContext.setTheme(newTheme)
       } catch {
-        // If context toggle fails, fall back to manual toggle
-        handleFallbackToggle()
+        // If context setTheme fails, fall back to manual change
+        handleFallbackThemeChange(newTheme)
       }
     } else {
-      // Use fallback toggle when context is unavailable
-      handleFallbackToggle()
+      // Use fallback when context is unavailable
+      handleFallbackThemeChange(newTheme)
     }
   }
 
-  const handleFallbackToggle = () => {
-    const newTheme = fallbackTheme === 'light' ? 'dark' : 'light'
+  const handleFallbackThemeChange = (newTheme: 'light' | 'dark' | 'bubble-gum') => {
     setFallbackTheme(newTheme)
     
     // Apply theme changes directly
     try {
-      document.documentElement.classList.toggle('dark', newTheme === 'dark')
+      document.documentElement.classList.remove('dark', 'bubble-gum')
+      if (newTheme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else if (newTheme === 'bubble-gum') {
+        document.documentElement.classList.add('bubble-gum')
+      }
       localStorage.setItem('theme', newTheme)
     } catch {
       // Silently fail if DOM operations are not available
@@ -73,6 +88,22 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
 
   // Determine current theme - prefer context over fallback
   const currentTheme = (themeContext && !hasContextError) ? themeContext.theme : fallbackTheme
+
+  // Get the icon for the current theme
+  const getThemeIcon = () => {
+    if (currentTheme === 'dark') {
+      return <Moon className="h-5 w-5" />
+    } else if (currentTheme === 'bubble-gum') {
+      return <Palette className="h-5 w-5" />
+    }
+    return <Sun className="h-5 w-5" />
+  }
+
+  const getThemeLabel = () => {
+    if (currentTheme === 'dark') return 'Dark Mode'
+    if (currentTheme === 'bubble-gum') return 'Bubble Gum'
+    return 'Light Mode'
+  }
 
   // Show loading state during hydration to prevent layout shift
   if (!mounted) {
@@ -119,90 +150,136 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
 
   if (variant === 'sidebar') {
     return (
-      <button
-        onClick={handleToggle}
-        className={cn(
-          "flex items-center gap-3 px-3 py-2.5 rounded-lg",
-          "text-sidebar-foreground transition-all",
-          "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-          "focus:outline-none",
-          "w-full",
-          "theme-toggle-no-border",
-          className
-        )}
-        aria-label={`Switch to ${currentTheme === 'light' ? 'dark' : 'light'} theme`}
-      >
-        <div className="relative w-5 h-5 flex-shrink-0">
-          <Sun 
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button
             className={cn(
-              "absolute inset-0 h-5 w-5 transition-all duration-300",
-              currentTheme === 'light' ? 'rotate-0 opacity-100' : 'rotate-90 opacity-0'
-            )} 
-          />
-          <Moon 
+              "flex items-center gap-3 px-3 py-2.5 rounded-lg",
+              "text-sidebar-foreground transition-all",
+              "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+              "focus:outline-none",
+              "w-full",
+              "theme-toggle-no-border",
+              className
+            )}
+            aria-label={`Theme selector: ${getThemeLabel()}`}
+          >
+            <div className="relative w-5 h-5 flex-shrink-0 transition-all duration-300">
+              {getThemeIcon()}
+            </div>
+            <span className="font-medium">
+              {getThemeLabel()}
+            </span>
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent side="right" align="start" className="w-40">
+          <DropdownMenuItem 
+            onClick={() => handleThemeChange('light')}
             className={cn(
-              "absolute inset-0 h-5 w-5 transition-all duration-300",
-              currentTheme === 'dark' ? 'rotate-0 opacity-100' : '-rotate-90 opacity-0'
-            )} 
-          />
-        </div>
-        <span className="font-medium">
-          {currentTheme === 'light' ? 'Dark' : 'Light'} Mode
-        </span>
-      </button>
+              "flex items-center gap-2",
+              currentTheme === 'light' && "bg-accent"
+            )}
+          >
+            <Sun className="h-4 w-4" />
+            <span>Light Mode</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem 
+            onClick={() => handleThemeChange('dark')}
+            className={cn(
+              "flex items-center gap-2",
+              currentTheme === 'dark' && "bg-accent"
+            )}
+          >
+            <Moon className="h-4 w-4" />
+            <span>Dark Mode</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem 
+            onClick={() => handleThemeChange('bubble-gum')}
+            className={cn(
+              "flex items-center gap-2",
+              currentTheme === 'bubble-gum' && "bg-accent"
+            )}
+          >
+            <Palette className="h-4 w-4" />
+            <span>Bubble Gum</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     )
   }
 
   return (
-    <button
-      onClick={handleToggle}
-      className={cn(
-        "relative w-full h-14 px-6 flex items-center gap-3",
-        "bg-gradient-to-r from-sidebar-accent/80 to-sidebar-accent/90",
-        "dark:from-sidebar-accent/60 dark:to-sidebar-accent/80",
-        "hover:from-sidebar-accent/90 hover:to-sidebar-accent/100",
-        "dark:hover:from-sidebar-accent/70 dark:hover:to-sidebar-accent/90",
-        "backdrop-blur-md border border-sidebar-border/60",
-        "dark:border-sidebar-border/40",
-        "hover:border-sidebar-border/80 dark:hover:border-sidebar-border/60",
-        "transition-all duration-300 rounded-xl",
-        "text-sidebar-foreground/90 hover:text-sidebar-foreground",
-        "focus:outline-none focus:ring-2 focus:ring-sidebar-ring focus:ring-offset-2",
-        "focus:ring-offset-sidebar-background",
-        "group shadow-lg shadow-sidebar-accent/10",
-        "hover:shadow-xl hover:shadow-sidebar-accent/20",
-        "dark:shadow-sidebar-accent/5 dark:hover:shadow-sidebar-accent/15",
-        className
-      )}
-      aria-label={`Switch to ${currentTheme === 'light' ? 'dark' : 'light'} theme`}
-    >
-      <div className="relative w-5 h-5">
-        <Sun 
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
           className={cn(
-            "absolute inset-0 h-5 w-5 transition-all duration-300",
-            "group-hover:scale-110",
-            currentTheme === 'light' ? 'rotate-0 opacity-100' : 'rotate-90 opacity-0'
-          )} 
-        />
-        <Moon 
+            "relative w-full h-14 px-6 flex items-center gap-3",
+            "bg-gradient-to-r from-sidebar-accent/80 to-sidebar-accent/90",
+            "dark:from-sidebar-accent/60 dark:to-sidebar-accent/80",
+            "hover:from-sidebar-accent/90 hover:to-sidebar-accent/100",
+            "dark:hover:from-sidebar-accent/70 dark:hover:to-sidebar-accent/90",
+            "backdrop-blur-md border border-sidebar-border/60",
+            "dark:border-sidebar-border/40",
+            "hover:border-sidebar-border/80 dark:hover:border-sidebar-border/60",
+            "transition-all duration-300 rounded-xl",
+            "text-sidebar-foreground/90 hover:text-sidebar-foreground",
+            "focus:outline-none focus:ring-2 focus:ring-sidebar-ring focus:ring-offset-2",
+            "focus:ring-offset-sidebar-background",
+            "group shadow-lg shadow-sidebar-accent/10",
+            "hover:shadow-xl hover:shadow-sidebar-accent/20",
+            "dark:shadow-sidebar-accent/5 dark:hover:shadow-sidebar-accent/15",
+            className
+          )}
+          aria-label={`Theme selector: ${getThemeLabel()}`}
+        >
+          <div className="relative w-5 h-5 transition-all duration-300 group-hover:scale-110">
+            {getThemeIcon()}
+          </div>
+          <span className="font-medium text-sm tracking-wide">
+            {getThemeLabel()}
+          </span>
+          <div 
+            className={cn(
+              "absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100",
+              "bg-gradient-to-r from-sidebar-accent/10 to-sidebar-accent/5",
+              "dark:from-sidebar-accent/15 dark:to-sidebar-accent/8",
+              "transition-opacity duration-300 pointer-events-none"
+            )}
+          />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent side="right" align="start" className="w-40">
+        <DropdownMenuItem 
+          onClick={() => handleThemeChange('light')}
           className={cn(
-            "absolute inset-0 h-5 w-5 transition-all duration-300",
-            "group-hover:scale-110",
-            currentTheme === 'dark' ? 'rotate-0 opacity-100' : '-rotate-90 opacity-0'
-          )} 
-        />
-      </div>
-      <span className="font-medium text-sm tracking-wide">
-        {currentTheme === 'light' ? 'Dark' : 'Light'} Mode
-      </span>
-      <div 
-        className={cn(
-          "absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100",
-          "bg-gradient-to-r from-sidebar-accent/10 to-sidebar-accent/5",
-          "dark:from-sidebar-accent/15 dark:to-sidebar-accent/8",
-          "transition-opacity duration-300 pointer-events-none"
-        )}
-      />
-    </button>
+            "flex items-center gap-2",
+            currentTheme === 'light' && "bg-accent"
+          )}
+        >
+          <Sun className="h-4 w-4" />
+          <span>Light Mode</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem 
+          onClick={() => handleThemeChange('dark')}
+          className={cn(
+            "flex items-center gap-2",
+            currentTheme === 'dark' && "bg-accent"
+          )}
+        >
+          <Moon className="h-4 w-4" />
+          <span>Dark Mode</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem 
+          onClick={() => handleThemeChange('bubble-gum')}
+          className={cn(
+            "flex items-center gap-2",
+            currentTheme === 'bubble-gum' && "bg-accent"
+          )}
+        >
+          <Palette className="h-4 w-4" />
+          <span>Bubble Gum</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
