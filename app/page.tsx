@@ -52,7 +52,7 @@ export default function Home() {
       <Sidebar />
       
       {/* Main Content */}
-      <main className="lg:ml-64 p-4 sm:p-6 lg:p-8">
+      <main className="min-[1600px]:ml-64 p-4 sm:p-6 lg:p-8">
         {/* Removed max-width constraint for full-width layout on xlarge screens */}
         <div className="w-full space-y-8">
           

@@ -33,8 +33,15 @@ This is a Next.js 15 application using the App Router with the following key cha
 
 ### Project Structure
 - `/app` - Next.js App Router pages and layouts
-- `/lib` - Utility functions (includes `cn()` for className merging)
-- `/public` - Static assets
+- `/components` - Reusable components
+  - `/ui` - shadcn/ui components (ConventionCard, HotDateCard, UserCard, etc.)
+  - `/layout` - Layout components (Sidebar)
+  - `providers.tsx` - Context providers wrapper
+- `/lib` - Utility functions and context
+  - `utils.ts` - Includes `cn()` for className merging
+  - `theme-context.tsx` - Theme management context
+  - `mock-data.ts` - Sample data for development
+- `/public` - Static assets including images and logo
 
 ### Path Aliases
 - `@/*` maps to the project root, allowing imports like `@/lib/utils`
@@ -50,9 +57,11 @@ The project is configured for shadcn/ui with:
 ### Styling System
 - Tailwind CSS v4 with CSS variables for theming
 - Dark mode support with `.dark` class variant
+- Multiple theme variants: default, bubble-gum, cyberpunk
 - Custom glass effects and golden accent theme
 - OKLCH color space for modern color management
-- Custom utilities in `app/globals.css`
+- Custom utilities in `app/globals.css` including hover-lift effects and status indicators
+- Responsive breakpoints for dynamic content display
 
 ## Configuration
 
@@ -65,10 +74,18 @@ The project is configured for shadcn/ui with:
 - Path alias `@/*` configured
 - Target: ES2017
 
+## Key Dependencies
+
+- **UI Libraries**: Radix UI (dropdown-menu), Lucide React (icons), Class Variance Authority (component variants)
+- **Styling**: Tailwind Merge, clsx, tw-animate-css for animations
+- **Development**: ESLint with Next.js rules, PostCSS with Tailwind
+
 ## Notes
 
 - No test framework is currently configured
 - ESLint configured with Next.js recommended rules
+- Mock data available in `/lib/mock-data.ts` for development
+- Theme context manages multiple theme variants with persistence
 
 ## Workflow
 
@@ -91,6 +108,7 @@ The project is configured for shadcn/ui with:
 - **Playwright**: For interactive testing and screenshots (when available)
 
 ### Sub-Agent Specializations
+- `project-manager`: Primary coordinator for all tasks - MUST be used as entry point
 - `ui-ux-designer`: Design decisions, user flows, visual modernization
 - `frontend-developer`: React/Next.js implementation, TypeScript code
 - `marketing-expert`: Conversion optimization, SEO, messaging
@@ -113,4 +131,8 @@ The project is configured for shadcn/ui with:
 
 ## Best Practices
 
-- Always kill Next.js servers after completing a task
+- Always kill Next.js servers after completing a task (`pkill -f "next dev"` or Ctrl+C)
+- Use responsive content display - check breakpoints for mobile/tablet/desktop
+- Maintain theme consistency across components
+- Leverage existing UI components before creating new ones
+- Follow TypeScript strict mode requirements
