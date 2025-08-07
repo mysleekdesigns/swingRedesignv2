@@ -46,7 +46,7 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
       } else if (initialTheme === 'bubble-gum') {
         document.documentElement.classList.add('bubble-gum')
       } else if (initialTheme === 'cyberpunk') {
-        document.documentElement.classList.add('cyberpunk', 'dark')
+        document.documentElement.classList.add('cyberpunk')
       }
     } catch {
       // Even localStorage might fail in some environments
@@ -82,7 +82,7 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
       } else if (newTheme === 'bubble-gum') {
         document.documentElement.classList.add('bubble-gum')
       } else if (newTheme === 'cyberpunk') {
-        document.documentElement.classList.add('cyberpunk', 'dark')
+        document.documentElement.classList.add('cyberpunk')
       }
       localStorage.setItem('theme', newTheme)
     } catch {
@@ -99,8 +99,6 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
       return <Moon className="h-5 w-5" />
     } else if (currentTheme === 'bubble-gum') {
       return <Palette className="h-5 w-5" />
-    } else if (currentTheme === 'cyberpunk') {
-      return <Cpu className="h-5 w-5" />
     }
     return <Sun className="h-5 w-5" />
   }
@@ -108,7 +106,6 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
   const getThemeLabel = () => {
     if (currentTheme === 'dark') return 'Dark Mode'
     if (currentTheme === 'bubble-gum') return 'Bubble Gum'
-    if (currentTheme === 'cyberpunk') return 'Cyberpunk'
     return 'Light Mode'
   }
 
@@ -210,16 +207,6 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
             <Palette className="h-4 w-4" />
             <span>Bubble Gum</span>
           </DropdownMenuItem>
-          <DropdownMenuItem 
-            onClick={() => handleThemeChange('cyberpunk')}
-            className={cn(
-              "flex items-center gap-2",
-              currentTheme === 'cyberpunk' && "bg-accent"
-            )}
-          >
-            <Cpu className="h-4 w-4" />
-            <span>Cyberpunk</span>
-          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     )
@@ -295,16 +282,6 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
         >
           <Palette className="h-4 w-4" />
           <span>Bubble Gum</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem 
-          onClick={() => handleThemeChange('cyberpunk')}
-          className={cn(
-            "flex items-center gap-2",
-            currentTheme === 'cyberpunk' && "bg-accent"
-          )}
-        >
-          <Cpu className="h-4 w-4" />
-          <span>Cyberpunk</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 
-type Theme = 'light' | 'dark' | 'bubble-gum' | 'cyberpunk'
+type Theme = 'light' | 'dark' | 'bubble-gum'
 
 interface ThemeContextType {
   theme: Theme
@@ -25,13 +25,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme(initialTheme)
     
     // Apply initial theme classes
-    document.documentElement.classList.remove('dark', 'bubble-gum', 'cyberpunk')
+    document.documentElement.classList.remove('dark', 'bubble-gum')
     if (initialTheme === 'dark') {
       document.documentElement.classList.add('dark')
     } else if (initialTheme === 'bubble-gum') {
       document.documentElement.classList.add('bubble-gum')
-    } else if (initialTheme === 'cyberpunk') {
-      document.documentElement.classList.add('cyberpunk', 'dark')
     }
   }, [])
 
@@ -39,14 +37,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Only allow theme changes after mount to prevent SSR issues
     if (!mounted) return
     
-    // Cycle through four themes: light -> dark -> bubble-gum -> cyberpunk -> light
+    // Cycle through three themes: light -> dark -> bubble-gum -> light
     let newTheme: Theme
     if (theme === 'light') {
       newTheme = 'dark'
     } else if (theme === 'dark') {
       newTheme = 'bubble-gum'
-    } else if (theme === 'bubble-gum') {
-      newTheme = 'cyberpunk'
     } else {
       newTheme = 'light'
     }
@@ -61,13 +57,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('theme', newTheme)
     
     // Apply theme classes
-    document.documentElement.classList.remove('dark', 'bubble-gum', 'cyberpunk')
+    document.documentElement.classList.remove('dark', 'bubble-gum')
     if (newTheme === 'dark') {
       document.documentElement.classList.add('dark')
     } else if (newTheme === 'bubble-gum') {
       document.documentElement.classList.add('bubble-gum')
-    } else if (newTheme === 'cyberpunk') {
-      document.documentElement.classList.add('cyberpunk', 'dark')
     }
   }
   // Always provide context, even during SSR

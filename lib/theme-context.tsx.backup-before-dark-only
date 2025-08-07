@@ -31,7 +31,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     } else if (initialTheme === 'bubble-gum') {
       document.documentElement.classList.add('bubble-gum')
     } else if (initialTheme === 'cyberpunk') {
-      document.documentElement.classList.add('cyberpunk', 'dark')
+      document.documentElement.classList.add('cyberpunk')
     }
   }, [])
 
@@ -67,7 +67,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     } else if (newTheme === 'bubble-gum') {
       document.documentElement.classList.add('bubble-gum')
     } else if (newTheme === 'cyberpunk') {
-      document.documentElement.classList.add('cyberpunk', 'dark')
+      document.documentElement.classList.add('cyberpunk')
     }
   }
   // Always provide context, even during SSR

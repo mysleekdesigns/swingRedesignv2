@@ -103,7 +103,7 @@ export default function Home() {
           <section>
             <SectionHeader
               title="Who Viewed Me"
-              subtitle="Recent profile visitors - someone's interested\\!"
+              subtitle="Recent profile visitors - someone's interested!"
               icon={Eye}
               count={whoViewedMeUsers.length}
               variant="glass"
