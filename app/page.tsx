@@ -56,116 +56,56 @@ export default function Home() {
         {/* Removed max-width constraint for full-width layout on xlarge screens */}
         <div className="w-full space-y-8">
           
-          {/* Featured Couple and Convention Sections - 25/75 Split */}
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-            {/* Featured Couple Section - 25% on desktop - Ultra Minimal Design */}
-            <div className="lg:w-1/4 lg:flex-shrink-0">
-              <div className="relative overflow-hidden rounded-3xl section-glass p-4 h-96">
-                <div className="relative z-10 h-full flex flex-col">
-                  {/* Couple Image - Primary Visual Element (70% of space) */}
-                  <div className="flex-1 mb-4">
-                    <div className="relative h-full rounded-2xl overflow-hidden">
-                      <Image
-                        src={featuredCouple.imageUrl}
-                        alt={`${featuredCouple.names} - Featured Couple`}
-                        fill
-                        className="object-cover object-top"
-                        sizes="(max-width: 1024px) 100vw, 25vw"
-                        priority
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                      
-                      {/* Minimal Badge Overlay */}
-                      <div className="absolute top-3 left-3">
-                        <div className="px-2 py-1 rounded-full text-xs font-medium bg-black/80 backdrop-blur-sm text-white border border-white/20">
-                          Couple of the Month
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Minimal Content (30% of space) */}
-                  <div className="space-y-2">
-                    {/* Names - Primary Text */}
-                    <h2 className="text-lg font-bold text-foreground tracking-tight">
-                      {featuredCouple.names}
-                    </h2>
-                    
-                    {/* Essential Info - Single Line */}
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <MapPin className="w-3 h-3" />
-                        {featuredCouple.location}
-                      </span>
-                      <span>Ages {featuredCouple.age}</span>
-                    </div>
-                    
-                    {/* Single Key Stat */}
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-muted-foreground">{featuredCouple.eventsOrganized} Events</span>
-                      <button className="px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground hover:text-primary-foreground rounded-xl font-semibold transition-colors">
-                        View Profile
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Subtle Background Effects */}
-                <div className="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-full blur-2xl" />
-              </div>
-            </div>
-            
-            {/* Convention Section - 75% on desktop */}
-            <div className="flex-1">
-              <div className="relative overflow-hidden rounded-3xl section-glass p-8 h-96">
+          {/* Convention Section - Full Width */}
+          <section>
+              <div className="relative overflow-hidden rounded-3xl section-glass p-8">
                 <div className="flex flex-col lg:flex-row gap-6 h-full">
                   {/* Text Content - Left Side */}
-                  <div className="lg:w-1/2 lg:pr-6">
-                    <div className="relative z-10 h-full flex flex-col justify-center">
-                      <div className="inline-block w-fit px-3 py-1.5 rounded-full text-sm font-semibold mb-4 bg-primary/20 text-primary border border-primary/30">
+                  <div className="lg:w-full xl:w-1/2 lg:pr-6">
+                    <div className="relative z-10 h-full flex flex-col justify-between">
+                      <div className="inline-block w-fit px-3 py-1.5 rounded-full text-sm font-semibold mb-8 bg-primary/20 text-primary border border-primary/30">
                         Lifestyle
                       </div>
                       
-                      <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 tracking-tight">
-                        {featuredConvention.name}
-                      </h2>
-                      
-                      <p className="text-lg text-muted-foreground mb-6">
-                        {featuredConvention.description}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-4 mb-6 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4 text-primary" />
-                          <span className="font-medium">
-                            {new Date(featuredConvention.date).toLocaleDateString('en-US', { 
-                              weekday: 'short', 
-                              month: 'short', 
-                              day: 'numeric',
-                              year: 'numeric'
-                            })}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <MapPin className="w-4 h-4 text-primary" />
-                          <span className="font-medium">{featuredConvention.location}</span>
-                        </div>
-                        {featuredConvention.price && (
+                      <div className="space-y-4 flex-1 flex flex-col justify-center">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight">
+                          {featuredConvention.name}
+                        </h2>
+                        
+                        <p className="text-lg text-muted-foreground">
+                          {featuredConvention.description}
+                        </p>
+                        
+                        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                           <div className="flex items-center gap-2">
-                            <DollarSign className="w-4 h-4 text-primary" />
-                            <span className="font-medium">{featuredConvention.price.replace('$', '')}</span>
+                            <Calendar className="w-4 h-4 text-primary" />
+                            <span className="font-medium">
+                              {new Date(featuredConvention.date).toLocaleDateString('en-US', { 
+                                weekday: 'short', 
+                                month: 'short', 
+                                day: 'numeric',
+                                year: 'numeric'
+                              })}
+                            </span>
                           </div>
-                        )}
+                          <div className="flex items-center gap-2">
+                            <MapPin className="w-4 h-4 text-primary" />
+                            <span className="font-medium">{featuredConvention.location}</span>
+                          </div>
+                          {featuredConvention.price && (
+                            <div className="flex items-center gap-2">
+                              <DollarSign className="w-4 h-4 text-primary" />
+                              <span className="font-medium">{featuredConvention.price.replace('$', '')}</span>
+                            </div>
+                          )}
+                          <div className="flex items-center gap-2">
+                            <Users className="w-4 h-4 text-primary" />
+                            <span className="font-medium">{featuredConvention.attendeeCount} people attending</span>
+                          </div>
+                        </div>
                       </div>
                       
-                      <div className="flex items-center gap-2 mb-6">
-                        <Users className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-sm text-muted-foreground">
-                          {featuredConvention.attendeeCount} people attending
-                        </span>
-                      </div>
-                      
-                      <div className="flex flex-wrap gap-4">
+                      <div className="flex flex-wrap gap-4 mt-8">
                         <button className="px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground hover:text-primary-foreground rounded-xl font-semibold transition-colors">
                           Register Now
                         </button>
@@ -177,7 +117,7 @@ export default function Home() {
                   </div>
                   
                   {/* Image - Right Side */}
-                  <div className="lg:w-1/2">
+                  <div className="lg:w-1/4 xl:w-1/2 hidden xl:block">
                     <div className="relative h-64 lg:h-full rounded-2xl overflow-hidden">
                       <Image
                         src={featuredConvention.imageUrl}
@@ -196,8 +136,7 @@ export default function Home() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl" />
               </div>
-            </div>
-          </div>
+          </section>
           {/* Who's On Section */}
           <section>
             <SectionHeader
