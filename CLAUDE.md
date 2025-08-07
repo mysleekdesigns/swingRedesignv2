@@ -33,15 +33,18 @@ This is a Next.js 15 application using the App Router with the following key cha
 
 ### Project Structure
 - `/app` - Next.js App Router pages and layouts
+  - `page.tsx` - Main landing page with hero and sections
+  - `layout.tsx` - Root layout with providers and fonts
+  - `globals.css` - Global styles and Tailwind directives
 - `/components` - Reusable components
-  - `/ui` - shadcn/ui components (ConventionCard, HotDateCard, UserCard, etc.)
-  - `/layout` - Layout components (Sidebar)
-  - `providers.tsx` - Context providers wrapper
+  - `/ui` - shadcn/ui components (ConventionCard, HotDateCard, UserCard, SectionHeader, etc.)
+  - `/layout` - Layout components (Sidebar with navigation)
+  - `providers.tsx` - Context providers wrapper for theme
 - `/lib` - Utility functions and context
   - `utils.ts` - Includes `cn()` for className merging
-  - `theme-context.tsx` - Theme management context
-  - `mock-data.ts` - Sample data for development
-- `/public` - Static assets including images and logo
+  - `theme-context.tsx` - Theme management with useTheme hook
+  - `mock-data.ts` - TypeScript-typed sample data (Users, HotDates, Conventions)
+- `/public` - Static assets including Swing logo and user images
 
 ### Path Aliases
 - `@/*` maps to the project root, allowing imports like `@/lib/utils`
@@ -57,11 +60,12 @@ The project is configured for shadcn/ui with:
 ### Styling System
 - Tailwind CSS v4 with CSS variables for theming
 - Dark mode support with `.dark` class variant
-- Multiple theme variants: default, bubble-gum, cyberpunk
-- Custom glass effects and golden accent theme
+- Multiple theme variants: default, bubble-gum, cyberpunk, golden-accent
+- Custom glass effects with backdrop blur and premium dark theme
 - OKLCH color space for modern color management
 - Custom utilities in `app/globals.css` including hover-lift effects and status indicators
-- Responsive breakpoints for dynamic content display
+- Responsive breakpoints: 780px, 1000px, 1600px, 2100px for adaptive layouts
+- Custom scrollbar styling and smooth scroll behavior
 
 ## Configuration
 
@@ -84,8 +88,10 @@ The project is configured for shadcn/ui with:
 
 - No test framework is currently configured
 - ESLint configured with Next.js recommended rules
-- Mock data available in `/lib/mock-data.ts` for development
-- Theme context manages multiple theme variants with persistence
+- Mock data available in `/lib/mock-data.ts` for development (Users, HotDates, Conventions)
+- Theme context manages multiple theme variants with localStorage persistence
+- TypeScript interfaces defined for all data models
+- Server-side rendering optimized with dynamic viewport
 
 ## Workflow
 
