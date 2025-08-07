@@ -12,7 +12,6 @@ import {
   newestMatches, 
   hotDates,
   featuredConvention,
-  featuredCouple
 } from "@/lib/mock-data";
 import { Users, Eye, Heart, Calendar, MapPin, DollarSign } from "lucide-react";
 
@@ -36,11 +35,11 @@ export default function Home() {
   }, []);
 
   // Determine image count based on screen width breakpoints
-  // ≥1536px: 8 images, 1024-1535px: 6 images, 768-1023px: 4 images, 640-767px: 3 images, <640px: 2 images
-  const imageCount = screenWidth >= 1536 ? 8 : 
-                    screenWidth >= 1024 ? 6 : 
-                    screenWidth >= 768 ? 4 : 
-                    screenWidth >= 640 ? 3 : 2;
+  // Custom breakpoints: ≥2100px: 8 images, ≥1600px: 6 images, ≥1000px: 4 images, ≥780px: 3 images, <780px: 2 images
+  const imageCount = screenWidth >= 2100 ? 8 : 
+                    screenWidth >= 1600 ? 6 : 
+                    screenWidth >= 1000 ? 4 : 
+                    screenWidth >= 780 ? 3 : 2;
 
   // Get dynamic selections based on screen width to match grid layout
   const displayedOnlineUsers = whoIsOnUsers.slice(0, imageCount);
@@ -146,8 +145,8 @@ export default function Home() {
               count={whoIsOnUsers.length}
               variant="glass"
             />
-            {/* Grid layout: 2 images (<640px), 3 images (640-767px), 4 images (768-1023px), 6 images (1024-1535px), 8 images (≥1536px) */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-4">
+            {/* Grid layout: 2 images (<780px), 3 images (780-999px), 4 images (1000-1599px), 6 images (1600-2099px), 8 images (≥2100px) */}
+            <div className="grid grid-cols-2 min-[780px]:grid-cols-3 min-[1000px]:grid-cols-4 min-[1600px]:grid-cols-6 min-[2100px]:grid-cols-8 gap-4">
               {displayedOnlineUsers.map((user) => (
                 <UserCard
                   key={user.id}
@@ -168,8 +167,8 @@ export default function Home() {
               count={whoViewedMeUsers.length}
               variant="glass"
             />
-            {/* Grid layout: 2 images (<640px), 3 images (640-767px), 4 images (768-1023px), 6 images (1024-1535px), 8 images (≥1536px) */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-4">
+            {/* Grid layout: 2 images (<780px), 3 images (780-999px), 4 images (1000-1599px), 6 images (1600-2099px), 8 images (≥2100px) */}
+            <div className="grid grid-cols-2 min-[780px]:grid-cols-3 min-[1000px]:grid-cols-4 min-[1600px]:grid-cols-6 min-[2100px]:grid-cols-8 gap-4">
               {displayedViewers.map((user) => (
                 <UserCard
                   key={user.id}
@@ -189,8 +188,8 @@ export default function Home() {
               count={newestMatches.length}
               variant="glass"
             />
-            {/* Grid layout: 2 images (<640px), 3 images (640-767px), 4 images (768-1023px), 6 images (1024-1535px), 8 images (≥1536px) */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-4">
+            {/* Grid layout: 2 images (<780px), 3 images (780-999px), 4 images (1000-1599px), 6 images (1600-2099px), 8 images (≥2100px) */}
+            <div className="grid grid-cols-2 min-[780px]:grid-cols-3 min-[1000px]:grid-cols-4 min-[1600px]:grid-cols-6 min-[2100px]:grid-cols-8 gap-4">
               {displayedMatches.map((user) => (
                 <UserCard
                   key={user.id}
@@ -250,3 +249,4 @@ export default function Home() {
     </div>
   );
 }
+
