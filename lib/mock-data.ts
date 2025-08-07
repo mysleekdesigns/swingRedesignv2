@@ -74,7 +74,7 @@ export const featuredCouple: FeaturedCouple = {
   names: "Alex & Jamie",
   age: "32 & 29",
   location: "Beverly Hills, CA",
-  imageUrl: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&h=800&fit=crop",
+  imageUrl: "/images/couple1.jpg",
   joinDate: "January 2023",
   eventsOrganized: 15,
   communityPoints: 2850,
