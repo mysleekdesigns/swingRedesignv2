@@ -31,9 +31,7 @@ export function UserCard({
   const aspectRatio = variant === 'compact' ? 'aspect-[4/5]' : 'aspect-[3/4]';
   
   return (
-    <div className={`group relative overflow-hidden rounded-2xl bg-card hover-lift cursor-pointer transition-all duration-300 ${
-      variant === 'featured' ? 'ring-2 ring-primary/20 shadow-lg shadow-primary/10' : ''
-    }`}>
+    <div className="group relative overflow-hidden rounded-2xl bg-card hover-lift cursor-pointer transition-all duration-300 ring-2 ring-primary/20 shadow-lg shadow-primary/10">
       <div className={`${aspectRatio} relative overflow-hidden`}>
         <Image
           src={imageUrl}
@@ -42,9 +40,7 @@ export function UserCard({
           className="object-cover transition-all duration-500 group-hover:scale-110"
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
           priority={variant === 'featured'}
-        />
-        
-        {/* Enhanced gradient overlay with subtle gold accent */}
+        />        {/* Enhanced gradient overlay with subtle gold accent */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70" />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         

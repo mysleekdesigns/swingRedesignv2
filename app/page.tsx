@@ -57,7 +57,7 @@ export default function Home() {
           
           {/* Convention Section - Full Width */}
           <section>
-              <div className="relative overflow-hidden rounded-3xl section-glass p-8">
+              <div className="relative overflow-hidden rounded-3xl section-glass p-8 ring-2 ring-primary/20 shadow-lg shadow-primary/10">
                 <div className="flex flex-col lg:flex-row gap-6 h-full">
                   {/* Text Content - Left Side */}
                   <div className="lg:w-full xl:w-1/2 lg:pr-6">
@@ -227,19 +227,19 @@ export default function Home() {
 
           {/* Stats Section */}
           <section className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="section-glass rounded-2xl p-6 text-center">
+            <div className="section-glass rounded-2xl p-6 text-center ring-2 ring-primary/20 shadow-lg shadow-primary/10">
               <div className="text-3xl font-bold text-primary mb-2">2.5K+</div>
               <div className="text-sm text-muted-foreground font-medium">Members Online Now</div>
             </div>
-            <div className="section-glass rounded-2xl p-6 text-center">
+            <div className="section-glass rounded-2xl p-6 text-center ring-2 ring-primary/20 shadow-lg shadow-primary/10">
               <div className="text-3xl font-bold text-primary mb-2">150+</div>
               <div className="text-sm text-muted-foreground font-medium">Events This Month</div>
             </div>
-            <div className="section-glass rounded-2xl p-6 text-center">
+            <div className="section-glass rounded-2xl p-6 text-center ring-2 ring-primary/20 shadow-lg shadow-primary/10">
               <div className="text-3xl font-bold text-primary mb-2">95%</div>
               <div className="text-sm text-muted-foreground font-medium">Successful Connections</div>
             </div>
-            <div className="section-glass rounded-2xl p-6 text-center">
+            <div className="section-glass rounded-2xl p-6 text-center ring-2 ring-primary/20 shadow-lg shadow-primary/10">
               <div className="text-3xl font-bold text-primary mb-2">24/7</div>
               <div className="text-sm text-muted-foreground font-medium">Support Available</div>
             </div>
