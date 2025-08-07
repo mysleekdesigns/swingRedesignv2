@@ -151,9 +151,9 @@ export default function Home() {
               <div className="relative overflow-hidden rounded-3xl section-glass p-8 h-full">
                 <div className="flex flex-col lg:flex-row gap-6 h-full">
                   {/* Text Content - Left Side */}
-                  <div className="flex-1 lg:pr-6">
+                  <div className="lg:w-1/2 lg:pr-6">
                     <div className="relative z-10 h-full flex flex-col justify-center">
-                      <div className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold mb-4 bg-primary/20 text-primary border border-primary/30">
+                      <div className="inline-block w-fit px-3 py-1.5 rounded-full text-sm font-semibold mb-4 bg-primary/20 text-primary border border-primary/30">
                         Lifestyle
                       </div>
                       
@@ -208,14 +208,14 @@ export default function Home() {
                   </div>
                   
                   {/* Image - Right Side */}
-                  <div className="flex-shrink-0 lg:w-80">
+                  <div className="lg:w-1/2">
                     <div className="relative h-64 lg:h-full rounded-2xl overflow-hidden">
                       <Image
                         src={featuredConvention.imageUrl}
                         alt={featuredConvention.name}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 1024px) 100vw, 320px"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                         priority
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
