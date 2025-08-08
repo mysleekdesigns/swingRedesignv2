@@ -1,121 +1,214 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Home,
   Users,
-  Eye,
-  MessageSquare,
-  Heart,
+  Search,
   User,
+  Heart,
+  MessageCircle,
+  Star,
   Calendar,
   MapPin,
+  Users2,
   Globe,
+  Plane,
   Settings,
   LogOut,
+  ChevronDown,
+  Smartphone,
   X,
-  Menu,
+  Bell,
+  TrendingUp,
+  Shield,
+  Crown
 } from "lucide-react";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 
-interface NavItem {
-  icon: React.ElementType;
-  label: string;
-  href: string;
-  active?: boolean;
+interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export function Sidebar() {
-  const [isOpen, setIsOpen] = useState(false);
+export function Sidebar({ isOpen, onClose }: SidebarProps) {
+  const pathname = usePathname();
+  const [expandedSections, setExpandedSections] = useState<string[]>(['discover']);
 
-  const navItems: NavItem[] = [
-    { icon: Home, label: "Home", href: "/", active: true },
-    { icon: Users, label: "Who's On", href: "/whos-on" },
-    { icon: Eye, label: "Viewed Me", href: "/viewed-me" },
-    { icon: MessageSquare, label: "Messages", href: "/messages" },
-    { icon: Heart, label: "Matches", href: "/matches" },
-    { icon: User, label: "My Account", href: "/account" },
-    { icon: Calendar, label: "Events", href: "/events" },
-    { icon: MapPin, label: "Hot Date", href: "/hot-date" },
-    { icon: Globe, label: "Travel", href: "/travel" },
-  ];
+  const toggleSection = (section: string) => {
+    setExpandedSections(prev =>
+      prev.includes(section)
+        ? prev.filter(s => s !== section)
+        : [...prev, section]
+    );
+  };
 
-  const secondaryItems: NavItem[] = [
-    { icon: Settings, label: "Settings", href: "/settings" },
-    { icon: LogOut, label: "Logout", href: "/logout" },
+  const navigation = [
+    {
+      section: 'discover',
+      title: 'Discover',
+      items: [
+        { name: 'Home', href: '/', icon: Home },
+        { name: "Who's Online", href: '/whos-on', icon: Users },
+        { name: 'Search', href: '/search', icon: Search },
+        { name: 'Hot Dates', href: '/hot-dates', icon: TrendingUp },
+      ]
+    },
+    {
+      section: 'profile',
+      title: 'My Profile',
+      items: [
+        { name: 'Profile', href: '/profile', icon: User },
+        { name: 'Favorites', href: '/favorites', icon: Star },
+        { name: 'Who Viewed Me', href: '/viewers', icon: Shield },
+        { name: 'Premium', href: '/premium', icon: Crown, badge: 'PRO' },
+      ]
+    },
+    {
+      section: 'social',
+      title: 'Social',
+      items: [
+        { name: 'Chat', href: '/chat', icon: MessageCircle, badge: '8' },
+        { name: 'Messages', href: '/messages', icon: Bell, badge: '3' },
+        { name: 'Matches', href: '/matches', icon: Heart },
+      ]
+    },
+    {
+      section: 'community',
+      title: 'Community',
+      items: [
+        { name: 'Events', href: '/events', icon: Calendar },
+        { name: 'Partners', href: '/partners', icon: Users2 },
+        { name: 'Clubs', href: '/clubs', icon: Globe },
+        { name: 'Groups', href: '/groups', icon: Users },
+        { name: 'Travel', href: '/travel', icon: Plane },
+      ]
+    },
+    {
+      section: 'account',
+      title: 'Account',
+      items: [
+        { name: 'Settings', href: '/settings', icon: Settings },
+        { name: 'Mobile App', href: '/mobile', icon: Smartphone },
+        { name: 'Logout', href: '/logout', icon: LogOut },
+      ]
+    }
   ];
 
   return (
     <>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="2xl:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-sidebar text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
-      >
-        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-      </button>
-
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-background/60 backdrop-blur-sm z-40"
+          onClick={onClose}
+        />
+      )}
+      
+      {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-sidebar border-r border-sidebar-border transform transition-transform duration-300 2xl:translate-x-0 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed lg:fixed top-0 left-0 h-full w-64 bg-card border-r border-border z-50 transition-transform duration-300 ${
+          isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
         <div className="flex flex-col h-full">
-          <div className="p-6 border-b border-sidebar-border">
-            <div className="flex items-center">
-              <Image
-                src="/images/Swing.png"
-                alt="Swing Dating"
-                width={180}
-                height={60}
-                className="h-14 w-auto"
-                priority
-              />
+          {/* Logo */}
+          <div className="p-4 border-b border-border">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <img src="/swing-logo.png" alt="Swing" className="h-10 w-auto" />
+                <div>
+                  <h1 className="font-bold text-lg">SWING</h1>
+                  <p className="text-xs text-muted-foreground">Elite Community</p>
+                </div>
+              </div>
+              <button
+                onClick={onClose}
+                className="lg:hidden p-1 hover:bg-muted rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
           </div>
 
-          <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
-                  item.active
-                    ? "bg-sidebar-primary text-sidebar-primary-foreground"
-                    : "text-sidebar-foreground"
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                <item.icon className="w-5 h-5 flex-shrink-0" />
-                <span className="font-medium">{item.label}</span>
-              </Link>
+          {/* User Profile Card */}
+          <div className="p-4 border-b border-border">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                <User className="w-6 h-6 text-primary" />
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold">Welcome Back</p>
+                <p className="text-sm text-muted-foreground">Premium Member</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <nav className="flex-1 overflow-y-auto py-4">
+            {navigation.map((section) => (
+              <div key={section.section} className="mb-2">
+                <button
+                  onClick={() => toggleSection(section.section)}
+                  className="w-full px-4 py-2 flex items-center justify-between text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <span>{section.title}</span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${
+                      expandedSections.includes(section.section) ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+                {expandedSections.includes(section.section) && (
+                  <div className="mt-1">
+                    {section.items.map((item) => {
+                      const isActive = pathname === item.href;
+                      return (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className={`flex items-center gap-3 px-4 py-2 mx-2 rounded-lg transition-all ${
+                            isActive
+                              ? 'bg-primary text-primary-foreground'
+                              : 'hover:bg-muted text-muted-foreground hover:text-foreground'
+                          }`}
+                        >
+                          <item.icon className="w-4 h-4" />
+                          <span className="flex-1 text-sm">{item.name}</span>
+                          {item.badge && (
+                            <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+                              item.badge === 'PRO' 
+                                ? 'bg-gradient-to-r from-primary to-primary/60 text-primary-foreground'
+                                : 'bg-primary/20 text-primary'
+                            }`}>
+                              {item.badge}
+                            </span>
+                          )}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
 
-          <div className="p-4 border-t border-sidebar-border space-y-1">
-            <ThemeToggle variant="sidebar" />
-            {secondaryItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sidebar-foreground transition-all hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                onClick={() => setIsOpen(false)}
-              >
-                <item.icon className="w-5 h-5 flex-shrink-0" />
-                <span className="font-medium">{item.label}</span>
-              </Link>
-            ))}
+          {/* Bottom Stats */}
+          <div className="p-4 border-t border-border">
+            <div className="grid grid-cols-2 gap-3">
+              <div className="text-center">
+                <p className="text-2xl font-bold text-primary">2.5K</p>
+                <p className="text-xs text-muted-foreground">Online Now</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-primary">150+</p>
+                <p className="text-xs text-muted-foreground">Events</p>
+              </div>
+            </div>
           </div>
         </div>
       </aside>
-
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-30 2xl:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
     </>
   );
 }

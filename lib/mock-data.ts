@@ -32,6 +32,7 @@ export interface Convention {
   name: string;
   description: string;
   date: string;
+  dates?: string;
   location: string;
   imageUrl: string;
   attendeeCount: number;
@@ -459,6 +460,168 @@ export const newestMatches: User[] = [
 ];
 
 // Mock hot dates/events
+// Random matches - shuffled users for discovery
+export const randomMatches: User[] = [
+  {
+    id: 'r1',
+    username: 'adventurer',
+    age: 28,
+    location: 'Pasadena',
+    imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=face',
+    isOnline: true,
+    distance: '8 mi',
+    photosCount: 12,
+  },
+  {
+    id: 'r2',
+    username: 'explorer',
+    age: 32,
+    location: 'Manhattan Beach',
+    imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=face',
+    isOnline: true,
+    distance: '10 mi',
+    photosCount: 9,
+  },
+  {
+    id: 'r3',
+    username: 'freespirit',
+    age: 25,
+    location: 'Hermosa Beach',
+    imageUrl: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=600&fit=crop&crop=face',
+    isOnline: false,
+    distance: '11 mi',
+    photosCount: 15,
+  },
+  {
+    id: 'r4',
+    username: 'nightowl',
+    age: 30,
+    location: 'Downtown LA',
+    imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=600&fit=crop&crop=face',
+    isOnline: true,
+    distance: '2 mi',
+    photosCount: 8,
+  },
+  {
+    id: 'r5',
+    username: 'wildcard',
+    age: 27,
+    location: 'Culver City',
+    imageUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=600&fit=crop&crop=face',
+    isOnline: true,
+    distance: '4 mi',
+    photosCount: 11,
+  },
+  {
+    id: 'r6',
+    username: 'mystique',
+    age: 29,
+    location: 'Malibu',
+    imageUrl: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&h=600&fit=crop&crop=face',
+    isOnline: false,
+    distance: '15 mi',
+    photosCount: 20,
+  },
+  {
+    id: 'r7',
+    username: 'charmer',
+    age: 31,
+    location: 'Redondo Beach',
+    imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=600&fit=crop&crop=face',
+    isOnline: true,
+    distance: '12 mi',
+    photosCount: 7,
+  },
+  {
+    id: 'r8',
+    username: 'seeker',
+    age: 26,
+    location: 'Torrance',
+    imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=600&fit=crop&crop=face',
+    isOnline: true,
+    distance: '13 mi',
+    photosCount: 14,
+  },
+];
+
+// Conventions data
+export const conventions: Convention[] = [
+  {
+    id: 'c1',
+    name: 'Swing Lifestyle Expo',
+    description: 'The largest lifestyle convention on the West Coast with workshops, vendors, and parties.',
+    date: '2025-09-15',
+    dates: 'Sep 15-17, 2025',
+    location: 'Los Angeles Convention Center',
+    imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop',
+    attendeeCount: 2500,
+    category: 'lifestyle',
+    featured: true,
+    price: '$199',
+  },
+  {
+    id: 'c2',
+    name: 'Desire Resort Takeover',
+    description: 'Exclusive week-long resort takeover in Mexico with themed nights and entertainment.',
+    date: '2025-10-01',
+    dates: 'Oct 1-7, 2025',
+    location: 'Riviera Maya, Mexico',
+    imageUrl: 'https://images.unsplash.com/photo-1561501878-aabd62634533?w=600&h=400&fit=crop',
+    attendeeCount: 800,
+    category: 'social',
+    price: '$2,500',
+  },
+  {
+    id: 'c3',
+    name: "Naughty N'awlins",
+    description: 'The original lifestyle convention with seminars, parties, and networking opportunities.',
+    date: '2025-11-12',
+    dates: 'Nov 12-16, 2025',
+    location: 'New Orleans, LA',
+    imageUrl: 'https://images.unsplash.com/photo-1513623935135-c896b59073c1?w=600&h=400&fit=crop',
+    attendeeCount: 3000,
+    category: 'lifestyle',
+    featured: true,
+    price: '$349',
+  },
+  {
+    id: 'c4',
+    name: 'Miami Beach Takeover',
+    description: 'Beach parties, yacht events, and exclusive nightclub experiences in South Beach.',
+    date: '2025-12-05',
+    dates: 'Dec 5-8, 2025',
+    location: 'Miami Beach, FL',
+    imageUrl: 'https://images.unsplash.com/photo-1535498730771-e735b998cd64?w=600&h=400&fit=crop',
+    attendeeCount: 1200,
+    category: 'social',
+    price: '$599',
+  },
+  {
+    id: 'c5',
+    name: 'Vegas After Dark',
+    description: "Sin City's premier lifestyle event with pool parties, shows, and exclusive venues.",
+    date: '2026-01-20',
+    dates: 'Jan 20-24, 2026',
+    location: 'Las Vegas, NV',
+    imageUrl: 'https://images.unsplash.com/photo-1581351123004-757df051db8e?w=600&h=400&fit=crop',
+    attendeeCount: 1800,
+    category: 'lifestyle',
+    price: '$449',
+  },
+  {
+    id: 'c6',
+    name: 'Hedonism III Weekend',
+    description: 'All-inclusive resort weekend in Jamaica with themed events and entertainment.',
+    date: '2026-02-14',
+    dates: 'Feb 14-17, 2026',
+    location: 'Runaway Bay, Jamaica',
+    imageUrl: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?w=600&h=400&fit=crop',
+    attendeeCount: 600,
+    category: 'social',
+    price: '$1,800',
+  },
+];
+
 export const hotDates: HotDate[] = [
   {
     id: '1',

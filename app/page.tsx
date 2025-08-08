@@ -1,132 +1,348 @@
 "use client";
 
-import { Header } from "@/components/layout/Header";
+import { useState } from "react";
+import Image from "next/image";
+import { Sidebar } from "@/components/layout/Sidebar";
 import { UserCard } from "@/components/ui/UserCard";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { 
   whoIsOnUsers, 
-  whoViewedMeUsers, 
+  whoViewedMeUsers,
+  newestMatches,
+  randomMatches,
+  hotDates,
+  conventions,
 } from "@/lib/mock-data";
 import { 
   Heart, 
   Sparkles, 
   Zap,
-  Flame,
-  Play
+  Eye,
+  UserPlus,
+  Calendar,
+  MapPin,
+  Users,
+  TrendingUp,
+  Menu,
+  X,
+  Bell,
+  MessageCircle,
+  Search
 } from "lucide-react";
 
 export default function Home() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('who-viewed');
+
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      
-      <main className="pt-16">
-        {/* Compact Hero Section */}
-        <section className="relative py-12 overflow-hidden bg-gradient-to-b from-muted/30 to-background">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-              <div className="flex-1 text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm mb-4">
-                  <Sparkles className="w-4 h-4 text-primary" />
-                  <span className="text-xs font-medium text-primary">2.5K+ Online</span>
-                </div>
-                
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
-                  <span className="bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
-                    Connect. Explore. Experience.
-                  </span>
-                </h1>
-                
-                <p className="text-lg text-muted-foreground mb-6 max-w-xl">
-                  The most sophisticated community for adventurous couples and singles
-                </p>
-                
-                <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                  <button className="px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold transition-all duration-300 hover:scale-105">
-                    <span className="flex items-center gap-2">
-                      <Heart className="w-4 h-4" />
-                      Start Discovering
-                    </span>
-                  </button>
-                  
-                  <button className="px-6 py-3 border border-border hover:bg-muted text-foreground rounded-xl font-semibold transition-all duration-300">
-                    <span className="flex items-center gap-2">
-                      <Play className="w-4 h-4" />
-                      Learn More
-                    </span>
-                  </button>
-                </div>
-              </div>
-              
-              <div className="flex gap-4">
-                <div className="space-y-4">
-                  <div className="bg-card rounded-2xl p-4 border border-border">
-                    <div className="text-2xl font-bold text-primary">150+</div>
-                    <div className="text-sm text-muted-foreground">Events Monthly</div>
-                  </div>
-                  <div className="bg-card rounded-2xl p-4 border border-border">
-                    <div className="text-2xl font-bold text-primary">95%</div>
-                    <div className="text-sm text-muted-foreground">Success Rate</div>
+      {/* Mobile Header */}
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
+        <div className="flex items-center justify-between px-4 py-3">
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="p-2 hover:bg-muted rounded-lg transition-colors"
+          >
+            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+          
+          <div className="flex items-center gap-2">
+            <img src="/swing-logo.png" alt="Swing" className="h-8" />
+            <span className="font-bold text-lg">SWING</span>
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <button className="p-2 hover:bg-muted rounded-lg transition-colors relative">
+              <Bell className="w-5 h-5" />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></span>
+            </button>
+            <button className="p-2 hover:bg-muted rounded-lg transition-colors">
+              <MessageCircle className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div className="flex">
+        {/* Sidebar */}
+        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+        
+        {/* Main Content */}
+        <main className="flex-1 lg:ml-64 pt-16 lg:pt-0">
+          {/* Desktop Header */}
+          <div className="hidden lg:block sticky top-0 z-40 bg-background/80 backdrop-blur-xl border-b border-border">
+            <div className="px-6 py-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <h1 className="text-2xl font-bold">Welcome back</h1>
+                  <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+                    <Sparkles className="w-4 h-4 text-primary" />
+                    <span className="text-sm font-medium text-primary">2,547 Online</span>
                   </div>
                 </div>
-                <div className="bg-card rounded-2xl p-4 border border-border self-center">
-                  <div className="text-3xl font-bold text-primary">50K+</div>
-                  <div className="text-sm text-muted-foreground">Active Members</div>
+                
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <input
+                      type="text"
+                      placeholder="Search members..."
+                      className="pl-10 pr-4 py-2 bg-muted/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 w-64"
+                    />
+                  </div>
+                  <button className="p-2 hover:bg-muted rounded-lg transition-colors relative">
+                    <Bell className="w-5 h-5" />
+                    <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                  </button>
+                  <button className="p-2 hover:bg-muted rounded-lg transition-colors">
+                    <MessageCircle className="w-5 h-5" />
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-        </section>
 
-        {/* Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20">
-          <section>
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h2 className="text-2xl font-bold flex items-center gap-2">
-                  <Zap className="w-6 h-6 text-primary" />
-                  Featured Members
-                </h2>
-                <p className="text-muted-foreground">Highly active and verified members</p>
+          {/* Stats Overview */}
+          <div className="px-4 lg:px-6 py-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="bg-card rounded-xl p-4 border border-border hover:border-primary/50 transition-colors">
+                <div className="flex items-center justify-between mb-2">
+                  <Eye className="w-5 h-5 text-primary" />
+                  <span className="text-xs text-muted-foreground">Today</span>
+                </div>
+                <div className="text-2xl font-bold">147</div>
+                <div className="text-sm text-muted-foreground">Profile Views</div>
+              </div>
+              
+              <div className="bg-card rounded-xl p-4 border border-border hover:border-primary/50 transition-colors">
+                <div className="flex items-center justify-between mb-2">
+                  <Heart className="w-5 h-5 text-primary" />
+                  <span className="text-xs text-muted-foreground">This Week</span>
+                </div>
+                <div className="text-2xl font-bold">32</div>
+                <div className="text-sm text-muted-foreground">New Matches</div>
+              </div>
+              
+              <div className="bg-card rounded-xl p-4 border border-border hover:border-primary/50 transition-colors">
+                <div className="flex items-center justify-between mb-2">
+                  <MessageCircle className="w-5 h-5 text-primary" />
+                  <span className="text-xs text-muted-foreground">Unread</span>
+                </div>
+                <div className="text-2xl font-bold">8</div>
+                <div className="text-sm text-muted-foreground">Messages</div>
+              </div>
+              
+              <div className="bg-card rounded-xl p-4 border border-border hover:border-primary/50 transition-colors">
+                <div className="flex items-center justify-between mb-2">
+                  <TrendingUp className="w-5 h-5 text-primary" />
+                  <span className="text-xs text-muted-foreground">Score</span>
+                </div>
+                <div className="text-2xl font-bold">94%</div>
+                <div className="text-sm text-muted-foreground">Compatibility</div>
               </div>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {whoIsOnUsers.slice(0, 6).map((user) => (
-                <UserCard
-                  key={user.id}
-                  {...user}
-                  variant="featured"
-                  showActions={true}
-                />
+          </div>
+
+          {/* Section Tabs */}
+          <div className="px-4 lg:px-6 mb-6">
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+              {[
+                { id: 'who-viewed', label: 'Who Viewed Me', icon: Eye, count: whoViewedMeUsers.length },
+                { id: 'newest', label: 'Newest Matches', icon: UserPlus, count: newestMatches.length },
+                { id: 'whos-on', label: "Who's Online", icon: Sparkles, count: whoIsOnUsers.length },
+                { id: 'random', label: 'Random Matches', icon: Zap, count: randomMatches.length },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveSection(tab.id)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
+                    activeSection === tab.id
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-card hover:bg-muted border border-border'
+                  }`}
+                >
+                  <tab.icon className="w-4 h-4" />
+                  <span>{tab.label}</span>
+                  <span className="text-xs bg-background/20 px-1.5 py-0.5 rounded-full">
+                    {tab.count}
+                  </span>
+                </button>
               ))}
             </div>
-          </section>
+          </div>
 
-          <section className="mt-12">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h2 className="text-2xl font-bold flex items-center gap-2">
-                  <Flame className="w-6 h-6 text-primary" />
-                  Recently Active
-                </h2>
-                <p className="text-muted-foreground">Members who were online in the last hour</p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
-              {whoViewedMeUsers.map((user) => (
-                <UserCard
-                  key={user.id}
-                  {...user}
-                  variant="compact"
-                  showActions={true}
+          {/* Dynamic Content Grid */}
+          <div className="px-4 lg:px-6 pb-8">
+            {activeSection === 'who-viewed' && (
+              <>
+                <SectionHeader
+                  title="Who Viewed Your Profile"
+                  subtitle="Members who recently checked you out"
+                  icon={Eye}
+                  variant="glass"
                 />
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                  {whoViewedMeUsers.map((user) => (
+                    <UserCard
+                      key={user.id}
+                      {...user}
+                      variant="default"
+                      showActions={true}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeSection === 'newest' && (
+              <>
+                <SectionHeader
+                  title="Newest Matches"
+                  subtitle="Fresh connections waiting for you"
+                  icon={UserPlus}
+                  variant="glass"
+                />
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                  {newestMatches.map((user) => (
+                    <UserCard
+                      key={user.id}
+                      {...user}
+                      variant="default"
+                      showActions={true}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeSection === 'whos-on' && (
+              <>
+                <SectionHeader
+                  title="Who's Online Now"
+                  subtitle="Active members ready to connect"
+                  icon={Sparkles}
+                  variant="glass"
+                />
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                  {whoIsOnUsers.map((user) => (
+                    <UserCard
+                      key={user.id}
+                      {...user}
+                      variant="default"
+                      showActions={true}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeSection === 'random' && (
+              <>
+                <SectionHeader
+                  title="Random Matches"
+                  subtitle="Discover someone new"
+                  icon={Zap}
+                  variant="glass"
+                />
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                  {randomMatches.map((user) => (
+                    <UserCard
+                      key={user.id}
+                      {...user}
+                      variant="default"
+                      showActions={true}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Hot Dates Section */}
+          <div className="px-4 lg:px-6 pb-8">
+            <SectionHeader
+              title="Hot Dates"
+              subtitle="Upcoming events and meetups"
+              icon={Calendar}
+              variant="glass"
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {hotDates.slice(0, 3).map((date) => (
+                <div key={date.id} className="bg-card rounded-xl p-4 border border-border hover:border-primary/50 transition-all hover:shadow-lg">
+                  <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg mb-3 flex items-center justify-center">
+                    <Calendar className="w-12 h-12 text-primary/50" />
+                  </div>
+                  <h3 className="font-semibold mb-1">{date.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-2">{date.description}</p>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+                    <MapPin className="w-3 h-3" />
+                    <span>{date.location}</span>
+                    <span className="text-primary">•</span>
+                    <span>{date.date}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1">
+                      <Users className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-sm font-medium">{date.attendeeCount} attending</span>
+                    </div>
+                    <button className="px-3 py-1 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
+                      Join
+                    </button>
+                  </div>
+                </div>
               ))}
             </div>
-          </section>
+          </div>
+
+          {/* Conventions Section */}
+          <div className="px-4 lg:px-6 pb-20">
+            <SectionHeader
+              title="Upcoming Conventions"
+              subtitle="Major events across the country"
+              icon={MapPin}
+              variant="glass"
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {conventions.slice(0, 3).map((convention) => (
+                <div key={convention.id} className="bg-card rounded-xl overflow-hidden border border-border hover:border-primary/50 transition-all hover:shadow-lg">
+                  <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                    <MapPin className="w-12 h-12 text-primary/50" />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold mb-1">{convention.name}</h3>
+                    <p className="text-sm text-muted-foreground mb-3">{convention.description}</p>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-muted-foreground">{convention.location}</span>
+                      <span className="font-medium text-primary">{convention.dates}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </main>
+      </div>
+
+      {/* Mobile Bottom Navigation */}
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-xl border-t border-border z-50">
+        <div className="grid grid-cols-5 py-2">
+          {[
+            { icon: Heart, label: 'Discover' },
+            { icon: Users, label: 'Matches' },
+            { icon: MessageCircle, label: 'Chat' },
+            { icon: Calendar, label: 'Events' },
+            { icon: Eye, label: 'Profile' },
+          ].map((item, index) => (
+            <button
+              key={index}
+              className="flex flex-col items-center gap-1 py-2 text-muted-foreground hover:text-primary transition-colors"
+            >
+              <item.icon className="w-5 h-5" />
+              <span className="text-xs">{item.label}</span>
+            </button>
+          ))}
         </div>
-
-      </main>
+      </nav>
     </div>
   );
 }
