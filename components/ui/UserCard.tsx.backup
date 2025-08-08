@@ -67,12 +67,13 @@ export function UserCard({
           </div>
         )}
         
-        {/* Content area with unified layout - icons above text for ALL device sizes */}
+        {/* Content area with new layout - icons above text for desktop */}
         <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
           <div className="space-y-1 sm:space-y-1.5">
-            {/* Action buttons - left aligned above username for ALL screen sizes */}
+            {/* Action buttons repositioned - left aligned above text for desktop (1000px+) */}
             {showActions && (
-              <div className="flex justify-start mb-2 sm:mb-3 gap-2">
+              <div className="hidden lg:flex lg:justify-start lg:mb-3 gap-2
+                            [@media(min-width:1000px)]:flex [@media(min-width:1000px)]:justify-start [@media(min-width:1000px)]:mb-3">
                 <button 
                   className={`p-2 sm:p-2.5 rounded-full backdrop-blur-sm border transition-all duration-200 active:scale-95 hover:scale-105 
                             opacity-70 group-hover:opacity-100 z-10 ${
@@ -93,8 +94,32 @@ export function UserCard({
                 </button>
               </div>
             )}
+
+            {/* Mobile action buttons - keep in bottom-right for small screens */}
+            {showActions && (
+              <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 flex flex-col gap-2 z-10
+                            lg:hidden
+                            [@media(min-width:1000px)]:hidden">
+                <button 
+                  className={`p-2 sm:p-2.5 rounded-full backdrop-blur-sm border transition-all duration-200 active:scale-95 hover:scale-105 ${
+                    isLiked 
+                      ? 'bg-primary/90 border-primary text-white shadow-lg shadow-primary/30' 
+                      : 'bg-black/60 border-white/30 hover:bg-primary/60 hover:border-primary/50 text-white'
+                  }`}
+                  aria-label={isLiked ? 'Unlike' : 'Like'}
+                >
+                  <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isLiked ? 'fill-white' : ''}`} />
+                </button>
+                <button 
+                  className="p-2 sm:p-2.5 rounded-full bg-black/60 backdrop-blur-sm border border-white/30 hover:bg-primary/60 hover:border-primary/50 hover:scale-105 active:scale-95 transition-all duration-200 text-white"
+                  aria-label="Send message"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                </button>
+              </div>
+            )}
             
-            {/* User name and age - prevent text wrapping with nowrap and ellipsis */}
+            {/* Couple name - prevent text wrapping with nowrap and ellipsis */}
             <h3 className="text-base sm:text-lg font-bold text-white leading-tight whitespace-nowrap overflow-hidden text-ellipsis">
               {username}, <span className="text-primary">{age}</span>
             </h3>
