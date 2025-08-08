@@ -181,7 +181,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 overflow-y-auto py-4">
+          <nav className="flex-1 overflow-y-auto py-4 scrollbar-hide">
             {navigation.map((section) => (
               <div key={section.section} className="mb-2">
                 <button
@@ -232,7 +232,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                         <button
                           key={themeItem.name}
                           onClick={() => handleThemeChange(themeItem.key)}
-                          className={`flex items-center gap-3 px-4 py-2 mx-2 rounded-lg transition-all w-full ${
+                          className={`flex items-center gap-3 px-4 py-2 mx-2 rounded-lg transition-all w-[calc(100%-1rem)] ${
                             isActive
                               ? 'bg-primary text-primary-foreground'
                               : 'hover:bg-muted text-muted-foreground hover:text-foreground'
