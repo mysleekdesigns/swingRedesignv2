@@ -584,6 +584,18 @@ export const conventions: Convention[] = [
   },
   {
     id: 'c4',
+    name: 'Temptation Cruise',
+    description: 'Seven nights of paradise on the high seas with themed parties and entertainment.',
+    date: '2025-11-20',
+    dates: 'Nov 20-27, 2025',
+    location: 'Caribbean Cruise',
+    imageUrl: 'https://images.unsplash.com/photo-1599640842225-85d111c60e6b?w=600&h=400&fit=crop',
+    attendeeCount: 1500,
+    category: 'social',
+    price: '$1,899',
+  },
+  {
+    id: 'c5',
     name: 'Miami Beach Takeover',
     description: 'Beach parties, yacht events, and exclusive nightclub experiences in South Beach.',
     date: '2025-12-05',
@@ -595,7 +607,7 @@ export const conventions: Convention[] = [
     price: '$599',
   },
   {
-    id: 'c5',
+    id: 'c6',
     name: 'Vegas After Dark',
     description: "Sin City's premier lifestyle event with pool parties, shows, and exclusive venues.",
     date: '2026-01-20',
@@ -607,7 +619,7 @@ export const conventions: Convention[] = [
     price: '$449',
   },
   {
-    id: 'c6',
+    id: 'c7',
     name: 'Hedonism III Weekend',
     description: 'All-inclusive resort weekend in Jamaica with themed events and entertainment.',
     date: '2026-02-14',
@@ -658,6 +670,18 @@ export const hotDates: HotDate[] = [
   },
   {
     id: '4',
+    title: 'Salsa Dance Night',
+    description: 'Learn salsa moves and dance the night away with passionate dancers in a vibrant atmosphere.',
+    date: '2025-08-14',
+    time: '8:00 PM',
+    location: 'Hollywood Salsa Club',
+    imageUrl: 'https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=600&h=400&fit=crop',
+    attendeeCount: 28,
+    category: 'party',
+    price: '$20',
+  },
+  {
+    id: '5',
     title: 'Art Gallery Opening',
     description: 'Experience contemporary art and connect with creative souls at this exclusive gallery opening.',
     date: '2025-08-15',
@@ -668,7 +692,7 @@ export const hotDates: HotDate[] = [
     category: 'cultural',
   },
   {
-    id: '5',
+    id: '6',
     title: 'Karaoke Night',
     description: 'Sing your heart out and connect with music lovers in a fun, relaxed atmosphere.',
     date: '2025-08-16',
@@ -680,7 +704,7 @@ export const hotDates: HotDate[] = [
     price: '$15',
   },
   {
-    id: '6',
+    id: '7',
     title: 'Hiking Adventure',
     description: 'Early morning hike through scenic trails followed by brunch at a local café.',
     date: '2025-08-17',
@@ -691,7 +715,7 @@ export const hotDates: HotDate[] = [
     category: 'outdoor',
   },
   {
-    id: '7',
+    id: '8',
     title: 'Cooking Class',
     description: 'Learn to prepare gourmet dishes while meeting fellow food enthusiasts.',
     date: '2025-08-19',
@@ -703,7 +727,7 @@ export const hotDates: HotDate[] = [
     price: '$60',
   },
   {
-    id: '8',
+    id: '9',
     title: 'Bowling & Drinks',
     description: 'Strike up conversations over strikes and spares at this retro bowling alley.',
     date: '2025-08-20',

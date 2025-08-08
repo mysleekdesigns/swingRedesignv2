@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTheme } from "@/lib/theme-context";
 
 import Image from "next/image";
 import { Sidebar } from "@/components/layout/Sidebar";
@@ -36,6 +37,12 @@ import {
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('who-viewed');
+  const { theme } = useTheme();
+  
+  // Use logo-swing-bg.png for light and bubble-gum themes, swing.png for others
+  const logoSrc = (theme === 'light' || theme === 'bubble-gum') 
+    ? '/images/logo-swing-bg.png' 
+    : '/images/Swing.png';
 
   return (
     <div className="min-h-screen bg-background">
@@ -50,7 +57,7 @@ export default function Home() {
           </button>
           
           <div className="flex items-center justify-center">
-            <Image src="/images/Swing.png" alt="Swing" width={120} height={40} className="h-8 sm:h-10 w-auto" priority />
+            <Image src={logoSrc} alt="Swing" width={120} height={40} className="h-8 sm:h-10 w-auto" priority />
           
           </div>
           
@@ -320,8 +327,8 @@ export default function Home() {
               icon={Calendar}
               variant="glass"
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {hotDates.slice(0, 3).map((date) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {hotDates.slice(0, 4).map((date) => (
                 <HotDateCard
                   key={date.id}
                   {...date}
@@ -339,8 +346,8 @@ export default function Home() {
               icon={MapPin}
               variant="glass"
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {conventions.slice(0, 3).map((convention) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {conventions.slice(0, 4).map((convention) => (
                 <ConventionCard
                   key={convention.id}
                   {...convention}

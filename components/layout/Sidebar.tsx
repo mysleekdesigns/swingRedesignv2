@@ -29,7 +29,7 @@ import {
   Moon,
   Cpu
 } from "lucide-react";
-import { useSafeTheme } from "@/lib/theme-context";
+import { useSafeTheme, useTheme } from "@/lib/theme-context";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -46,6 +46,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const [expandedSections, setExpandedSections] = useState<string[]>(['discover']);
   const themeContext = useSafeTheme();
+  const { theme } = useTheme();
+  
+  // Use logo-swing-bg.png for light and bubble-gum themes, swing.png for others
+  const logoSrc = (theme === 'light' || theme === 'bubble-gum') 
+    ? '/images/logo-swing-bg.png' 
+    : '/images/Swing.png';
 
   const toggleSection = (section: string) => {
     setExpandedSections(prev =>
@@ -146,7 +152,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <div className="p-4 border-b border-border">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <img src="/images/Swing.png" alt="Swing" className="h-10 w-auto" />
+                <img src={logoSrc} alt="Swing" className="h-10 w-auto" />
                 <div>
                   <h1 className="text-sm font-normal text-muted-foreground" style={{lineHeight: "1.15em"}}>Alternative Lifestyle Dating Community</h1>
                 </div>
