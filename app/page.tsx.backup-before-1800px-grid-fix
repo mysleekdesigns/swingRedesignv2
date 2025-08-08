@@ -326,7 +326,7 @@ export default function Home() {
               icon={Calendar}
               variant="glass"
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-1800-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl-1800:grid-cols-4 gap-4">
               {hotDates.slice(0, 4).map((date) => (
                 <HotDateCard
                   key={date.id}
@@ -345,7 +345,7 @@ export default function Home() {
               icon={MapPin}
               variant="glass"
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-1800-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl-1800:grid-cols-4 gap-4">
               {conventions.slice(0, 4).map((convention) => (
                 <ConventionCard
                   key={convention.id}

@@ -7,8 +7,8 @@
    - Network:      http://10.0.0.44:3000
 
  ✓ Starting...
- ✓ Ready in 588ms
+ ✓ Ready in 561ms
  ○ Compiling / ...
- ✓ Compiled / in 1120ms
- GET / 200 in 1386ms
+ ✓ Compiled / in 1229ms
+ GET / 200 in 1491ms
 [?25h

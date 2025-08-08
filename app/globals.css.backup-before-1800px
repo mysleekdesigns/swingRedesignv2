@@ -613,9 +613,3 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Safari and Chrome */
 }
-/* Custom 1800px breakpoint for 4-column grid */
-@media (min-width: 1800px) {
-  .grid-1800-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
