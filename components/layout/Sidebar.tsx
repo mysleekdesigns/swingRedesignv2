@@ -173,9 +173,13 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 src="/images/simon-avatar.jpg" 
                 alt="Simon Lacey" 
                 className="w-12 h-12 rounded-full object-cover border-2 border-primary/20" 
-              />              <div className="flex-1">
-                <p className="font-semibold">Welcome Back</p>
-                <p className="text-sm text-muted-foreground">Simon Lacey</p>
+              />
+              <div className="flex-1">
+                <p className="font-semibold">Simon Lacey</p>
+                <div className="flex items-center gap-2">
+                  <Crown className="w-4 h-4 text-yellow-500" />
+                  <p className="text-sm text-muted-foreground">Premium Member</p>
+                </div>
               </div>
             </div>
           </div>

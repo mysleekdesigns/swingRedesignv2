@@ -23,18 +23,35 @@ import {
   Bell,
   TrendingUp,
   Shield,
-  Crown
+  Crown,
+  Palette,
+  Sun,
+  Moon,
+  Cpu
 } from "lucide-react";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { useSafeTheme, useTheme } from "@/lib/theme-context";
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+interface ThemeItem {
+  name: string;
+  key: 'light' | 'dark' | 'bubble-gum' | 'cyberpunk';
+  icon: typeof Sun;
+}
+
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const [expandedSections, setExpandedSections] = useState<string[]>(['discover']);
+  const themeContext = useSafeTheme();
+  const { theme } = useTheme();
+  
+  // Use logo-swing-bg.png for light and bubble-gum themes, swing.png for others
+  const logoSrc = (theme === 'light' || theme === 'bubble-gum') 
+    ? '/images/logo-swing-bg.png' 
+    : '/images/Swing.png';
 
   const toggleSection = (section: string) => {
     setExpandedSections(prev =>
@@ -43,6 +60,19 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         : [...prev, section]
     );
   };
+
+  const handleThemeChange = (themeKey: 'light' | 'dark' | 'bubble-gum' | 'cyberpunk') => {
+    if (themeContext) {
+      themeContext.setTheme(themeKey);
+    }
+  };
+
+  const themeItems: ThemeItem[] = [
+    { name: 'Light Mode', key: 'light', icon: Sun },
+    { name: 'Dark Mode', key: 'dark', icon: Moon },
+    { name: 'Bubble Gum', key: 'bubble-gum', icon: Palette },
+    { name: 'Cyberpunk', key: 'cyberpunk', icon: Cpu },
+  ];
 
   const navigation = [
     {
@@ -86,6 +116,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       ]
     },
     {
+      section: 'appearance',
+      title: 'Appearance',
+      themeItems: themeItems
+    },
+    {
       section: 'account',
       title: 'Account',
       items: [
@@ -117,7 +152,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <div className="p-4 border-b border-border">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <img src="/images/Swing.png" alt="Swing" className="h-10 w-auto" />
+                <img src={logoSrc} alt="Swing" className="h-10 w-auto" />
                 <div>
                   <h1 className="text-sm font-normal text-muted-foreground" style={{lineHeight: "1.15em"}}>Alternative Lifestyle Dating Community</h1>
                 </div>
@@ -134,18 +169,21 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           {/* User Profile Card */}
           <div className="p-4 border-b border-border">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                <User className="w-6 h-6 text-primary" />
-              </div>
-              <div className="flex-1">
-                <p className="font-semibold">Welcome Back</p>
-                <p className="text-sm text-muted-foreground">Premium Member</p>
-              </div>
+              <img 
+                src="/images/simon-avatar.jpg" 
+                alt="Simon Lacey" 
+                className="w-12 h-12 rounded-full object-cover border-2 border-primary/20" 
+              />              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <Crown className="w-4 h-4 text-yellow-500" />
+                  <p className="font-semibold">Welcome back, Simon Lacey</p>
+                </div>
+                <p className="text-sm text-muted-foreground">Premium Member</p>              </div>
             </div>
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 overflow-y-auto py-4">
+          <nav className="flex-1 overflow-y-auto py-4 scrollbar-hide">
             {navigation.map((section) => (
               <div key={section.section} className="mb-2">
                 <button
@@ -161,7 +199,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </button>
                 {expandedSections.includes(section.section) && (
                   <div className="mt-1">
-                    {section.items.map((item) => {
+                    {/* Regular navigation items */}
+                    {section.items && section.items.map((item) => {
                       const isActive = pathname === item.href;
                       return (
                         <Link
@@ -187,21 +226,29 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                         </Link>
                       );
                     })}
+                    
+                    {/* Theme items for Appearance section */}
+                    {section.themeItems && section.themeItems.map((themeItem) => {
+                      const isActive = themeContext?.theme === themeItem.key;
+                      return (
+                        <button
+                          key={themeItem.name}
+                          onClick={() => handleThemeChange(themeItem.key)}
+                          className={`flex items-center gap-3 px-4 py-2 mx-2 rounded-lg transition-all w-[calc(100%-1rem)] ${
+                            isActive
+                              ? 'bg-primary text-primary-foreground'
+                              : 'hover:bg-muted text-muted-foreground hover:text-foreground'
+                          }`}
+                        >
+                          <themeItem.icon className="w-4 h-4" />
+                          <span className="flex-1 text-sm text-left">{themeItem.name}</span>
+                        </button>
+                      );
+                    })}
                   </div>
                 )}
               </div>
-
             ))}
-
-            {/* Theme Toggle Section */}
-            <div className="mb-2">
-              <div className="px-4 py-2 text-sm font-medium text-muted-foreground">
-                Appearance
-              </div>
-              <div className="px-2">
-                <ThemeToggle variant="sidebar" />
-              </div>
-            </div>
           </nav>
 
           {/* Bottom Stats */}

@@ -31,7 +31,7 @@ import {
   X,
   Bell,
   MessageCircle,
-  Search
+  Search,
 } from "lucide-react";
 
 export default function Home() {
@@ -88,8 +88,7 @@ export default function Home() {
                   <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
                     <Sparkles className="w-4 h-4 text-primary" />
                     <span className="text-sm font-medium text-primary">2,547 Online</span>
-                  </div>
-                </div>
+                  </div>                </div>
                 
                 <div className="flex items-center gap-3">
                   <div className="relative">
