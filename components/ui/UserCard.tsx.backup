@@ -9,6 +9,7 @@ interface UserCardProps {
   isOnline?: boolean;
   distance?: string;
   photosCount?: number;
+  viewedTime?: string;
   isLiked?: boolean;
   showActions?: boolean;
   variant?: 'default' | 'compact' | 'featured';
@@ -22,6 +23,7 @@ export function UserCard({
   isOnline = false,
   distance,
   photosCount,
+  viewedTime,
   isLiked = false,
   showActions = false,
   variant = 'default',
@@ -141,6 +143,12 @@ export function UserCard({
               <div className="flex items-center gap-1.5 text-primary sm:hidden">
                 <span className="text-xs font-medium whitespace-nowrap">{distance} away</span>
               </div>
+            )}
+            
+            {viewedTime && (
+              <p className="text-xs text-white/70 bg-black/40 rounded-full px-2 py-1 inline-block backdrop-blur-sm whitespace-nowrap">
+                {viewedTime}
+              </p>
             )}
           </div>
         </div>

@@ -8,7 +8,6 @@ export interface User {
   isOnline?: boolean;
   distance?: string;
   photosCount?: number;
-  viewedTime?: string;
   isLiked?: boolean;
   bio?: string;
   interests?: string[];
@@ -222,7 +221,6 @@ export const whoViewedMeUsers: User[] = [
     imageUrl: 'https://images.unsplash.com/photo-1513279922550-250c2129b13a?w=400&h=600&fit=crop',
     distance: '8 mi',
     photosCount: 13,
-    viewedTime: '2 hours ago',
   },
   {
     id: '10',
@@ -232,7 +230,6 @@ export const whoViewedMeUsers: User[] = [
     imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=face',
     distance: '12 mi',
     photosCount: 10,
-    viewedTime: '5 hours ago',
   },
   {
     id: '11',
@@ -243,7 +240,6 @@ export const whoViewedMeUsers: User[] = [
     imageUrl: 'https://images.unsplash.com/photo-1542351682-8453e2495f97?w=400&h=600&fit=crop',
     distance: '7 mi',
     photosCount: 17,
-    viewedTime: '1 day ago',
   },
   {
     id: '12',
@@ -253,7 +249,6 @@ export const whoViewedMeUsers: User[] = [
     imageUrl: 'https://images.unsplash.com/photo-1655249481446-25d575f1c054?w=400&h=600&fit=crop&crop=face',
     distance: '15 mi',
     photosCount: 7,
-    viewedTime: '2 days ago',
   },
   {
     id: '13',
@@ -264,7 +259,6 @@ export const whoViewedMeUsers: User[] = [
     imageUrl: 'https://images.unsplash.com/photo-1522749541344-23b292febf25?w=400&h=600&fit=crop',
     distance: '10 mi',
     photosCount: 19,
-    viewedTime: '3 days ago',
   },
   {
     id: '14',
@@ -274,7 +268,6 @@ export const whoViewedMeUsers: User[] = [
     imageUrl: 'https://images.unsplash.com/photo-1652471949169-9c587e8898cd?w=400&h=600&fit=crop&crop=face',
     distance: '13 mi',
     photosCount: 6,
-    viewedTime: '3 days ago',
   },
   {
     id: '21',
@@ -285,7 +278,6 @@ export const whoViewedMeUsers: User[] = [
     imageUrl: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=600&fit=crop&crop=face',
     distance: '16 mi',
     photosCount: 14,
-    viewedTime: '4 days ago',
   },
   {
     id: '22',
@@ -295,7 +287,6 @@ export const whoViewedMeUsers: User[] = [
     imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop&crop=face',
     distance: '11 mi',
     photosCount: 9,
-    viewedTime: '1 week ago',
   },
   {
     id: '23',
@@ -305,7 +296,6 @@ export const whoViewedMeUsers: User[] = [
     imageUrl: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&h=600&fit=crop',
     distance: '5 mi',
     photosCount: 12,
-    viewedTime: '1 week ago',
   },
   {
     id: '24',
@@ -315,7 +305,6 @@ export const whoViewedMeUsers: User[] = [
     imageUrl: 'https://images.unsplash.com/photo-1521310192545-4ac7951413f0?w=400&h=600&fit=crop&crop=face',
     distance: '18 mi',
     photosCount: 20,
-    viewedTime: '2 weeks ago',
   },
   {
     id: '25',
@@ -326,7 +315,6 @@ export const whoViewedMeUsers: User[] = [
     imageUrl: 'https://images.unsplash.com/photo-1494790108755-2616c90d8fb0?w=400&h=600&fit=crop&crop=face',
     distance: '22 mi',
     photosCount: 16,
-    viewedTime: '2 weeks ago',
   },
   {
     id: '26',
@@ -336,7 +324,6 @@ export const whoViewedMeUsers: User[] = [
     imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=600&fit=crop&crop=face',
     distance: '19 mi',
     photosCount: 7,
-    viewedTime: '3 weeks ago',
   },
 ];
 

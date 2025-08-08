@@ -10,6 +10,7 @@ interface VideoUserCardProps {
   isOnline?: boolean;
   distance?: string;
   photosCount?: number;
+  viewedTime?: string;
   isLiked?: boolean;
   showActions?: boolean;
   variant?: 'default' | 'compact' | 'featured';
@@ -24,6 +25,7 @@ export function VideoUserCard({
   isOnline = false,
   distance,
   photosCount,
+  viewedTime,
   isLiked = false,
   showActions = false,
   variant = 'default',
