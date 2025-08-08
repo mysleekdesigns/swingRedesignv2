@@ -113,41 +113,37 @@ export default function Home() {
 
           {/* Stats Overview */}
           <div className="px-4 sidebar:px-6 py-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-card rounded-xl p-4 border border-border hover:border-primary/50 transition-colors">
+            <div className="grid grid-cols-4 gap-2 md:gap-4">
+              <div className="bg-card rounded-xl p-3 md:p-4 border border-border hover:border-primary/50 transition-colors">
                 <div className="flex items-center justify-between mb-2">
                   <Eye className="w-5 h-5 text-primary" />
-                  <span className="text-xs text-muted-foreground">Today</span>
                 </div>
-                <div className="text-2xl font-bold">147</div>
-                <div className="text-sm text-muted-foreground">Profile Views</div>
+                <div className="text-lg md:text-2xl font-bold">147</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Profile Views</div>
               </div>
               
-              <div className="bg-card rounded-xl p-4 border border-border hover:border-primary/50 transition-colors">
+              <div className="bg-card rounded-xl p-3 md:p-4 border border-border hover:border-primary/50 transition-colors">
                 <div className="flex items-center justify-between mb-2">
                   <Heart className="w-5 h-5 text-primary" />
-                  <span className="text-xs text-muted-foreground">This Week</span>
                 </div>
-                <div className="text-2xl font-bold">32</div>
-                <div className="text-sm text-muted-foreground">New Matches</div>
+                <div className="text-lg md:text-2xl font-bold">32</div>
+                <div className="text-xs md:text-sm text-muted-foreground">New Matches</div>
               </div>
               
-              <div className="bg-card rounded-xl p-4 border border-border hover:border-primary/50 transition-colors">
+              <div className="bg-card rounded-xl p-3 md:p-4 border border-border hover:border-primary/50 transition-colors">
                 <div className="flex items-center justify-between mb-2">
                   <MessageCircle className="w-5 h-5 text-primary" />
-                  <span className="text-xs text-muted-foreground">Unread</span>
                 </div>
-                <div className="text-2xl font-bold">8</div>
-                <div className="text-sm text-muted-foreground">Messages</div>
+                <div className="text-lg md:text-2xl font-bold">8</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Messages</div>
               </div>
               
-              <div className="bg-card rounded-xl p-4 border border-border hover:border-primary/50 transition-colors">
+              <div className="bg-card rounded-xl p-3 md:p-4 border border-border hover:border-primary/50 transition-colors">
                 <div className="flex items-center justify-between mb-2">
                   <TrendingUp className="w-5 h-5 text-primary" />
-                  <span className="text-xs text-muted-foreground">Score</span>
                 </div>
-                <div className="text-2xl font-bold">94%</div>
-                <div className="text-sm text-muted-foreground">Compatibility</div>
+                <div className="text-lg md:text-2xl font-bold">94%</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Compatibility</div>
               </div>
             </div>
           </div>
