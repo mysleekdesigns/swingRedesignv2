@@ -142,3 +142,4 @@ The project is configured for shadcn/ui with:
 - Maintain theme consistency across components
 - Leverage existing UI components before creating new ones
 - Follow TypeScript strict mode requirements
+- everytime there is visual testing on the website app use playwright mcp to verify all the updates were successfully completed.

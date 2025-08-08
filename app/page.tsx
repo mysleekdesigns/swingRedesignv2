@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+
 import { Sidebar } from "@/components/layout/Sidebar";
 import { UserCard } from "@/components/ui/UserCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { HotDateCard } from "@/components/ui/HotDateCard";
+import { ConventionCard } from "@/components/ui/ConventionCard";
 import { 
   whoIsOnUsers, 
   whoViewedMeUsers,
@@ -268,28 +270,11 @@ export default function Home() {
             />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {hotDates.slice(0, 3).map((date) => (
-                <div key={date.id} className="bg-card rounded-xl p-4 border border-border hover:border-primary/50 transition-all hover:shadow-lg">
-                  <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg mb-3 flex items-center justify-center">
-                    <Calendar className="w-12 h-12 text-primary/50" />
-                  </div>
-                  <h3 className="font-semibold mb-1">{date.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-2">{date.description}</p>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
-                    <MapPin className="w-3 h-3" />
-                    <span>{date.location}</span>
-                    <span className="text-primary">•</span>
-                    <span>{date.date}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1">
-                      <Users className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-sm font-medium">{date.attendeeCount} attending</span>
-                    </div>
-                    <button className="px-3 py-1 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
-                      Join
-                    </button>
-                  </div>
-                </div>
+                <HotDateCard
+                  key={date.id}
+                  {...date}
+                  variant="default"
+                />
               ))}
             </div>
           </div>
@@ -304,19 +289,11 @@ export default function Home() {
             />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {conventions.slice(0, 3).map((convention) => (
-                <div key={convention.id} className="bg-card rounded-xl overflow-hidden border border-border hover:border-primary/50 transition-all hover:shadow-lg">
-                  <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                    <MapPin className="w-12 h-12 text-primary/50" />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold mb-1">{convention.name}</h3>
-                    <p className="text-sm text-muted-foreground mb-3">{convention.description}</p>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground">{convention.location}</span>
-                      <span className="font-medium text-primary">{convention.dates}</span>
-                    </div>
-                  </div>
-                </div>
+                <ConventionCard
+                  key={convention.id}
+                  {...convention}
+                  variant="default"
+                />
               ))}
             </div>
           </div>
