@@ -183,8 +183,7 @@ export default function Home() {
                   icon={Eye}
                   variant="glass"
                 />
-                {/* Mobile/Tablet: Grid with wrapping */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:hidden">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
                   {whoViewedMeUsers.map((user) => (
                     <UserCard
                       key={user.id}
@@ -192,18 +191,6 @@ export default function Home() {
                       variant="default"
                       showActions={true}
                     />
-                  ))}
-                </div>
-                {/* Desktop+: Single row with horizontal scroll */}
-                <div className="hidden lg:flex lg:gap-4 lg:overflow-x-auto lg:pb-4 scrollbar-hide">
-                  {whoViewedMeUsers.slice(0, 12).map((user) => (
-                    <div key={user.id} className="flex-shrink-0 w-[calc(100%/6-20px*5/6)] 2xl:w-[calc(100%/8-16px*7/8)]">
-                      <UserCard
-                        {...user}
-                        variant="default"
-                        showActions={true}
-                      />
-                    </div>
                   ))}
                 </div>
               </>
@@ -217,8 +204,7 @@ export default function Home() {
                   icon={UserPlus}
                   variant="glass"
                 />
-                {/* Mobile/Tablet: Grid with wrapping */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:hidden">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
                   {newestMatches.map((user) => (
                     <UserCard
                       key={user.id}
@@ -226,18 +212,6 @@ export default function Home() {
                       variant="default"
                       showActions={true}
                     />
-                  ))}
-                </div>
-                {/* Desktop+: Single row with horizontal scroll */}
-                <div className="hidden lg:flex lg:gap-4 lg:overflow-x-auto lg:pb-4 scrollbar-hide">
-                  {newestMatches.slice(0, 12).map((user) => (
-                    <div key={user.id} className="flex-shrink-0 w-[calc(100%/6-20px*5/6)] 2xl:w-[calc(100%/8-16px*7/8)]">
-                      <UserCard
-                        {...user}
-                        variant="default"
-                        showActions={true}
-                      />
-                    </div>
                   ))}
                 </div>
               </>
@@ -251,8 +225,7 @@ export default function Home() {
                   icon={Sparkles}
                   variant="glass"
                 />
-                {/* Mobile/Tablet: Grid with wrapping */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:hidden">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
                   {whoIsOnUsers.map((user) => (
                     <UserCard
                       key={user.id}
@@ -260,18 +233,6 @@ export default function Home() {
                       variant="default"
                       showActions={true}
                     />
-                  ))}
-                </div>
-                {/* Desktop+: Single row with horizontal scroll */}
-                <div className="hidden lg:flex lg:gap-4 lg:overflow-x-auto lg:pb-4 scrollbar-hide">
-                  {whoIsOnUsers.slice(0, 12).map((user) => (
-                    <div key={user.id} className="flex-shrink-0 w-[calc(100%/6-20px*5/6)] 2xl:w-[calc(100%/8-16px*7/8)]">
-                      <UserCard
-                        {...user}
-                        variant="default"
-                        showActions={true}
-                      />
-                    </div>
                   ))}
                 </div>
               </>
@@ -285,8 +246,7 @@ export default function Home() {
                   icon={Zap}
                   variant="glass"
                 />
-                {/* Mobile/Tablet: Grid with wrapping */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:hidden">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
                   {randomMatches.map((user) => (
                     <UserCard
                       key={user.id}
@@ -296,21 +256,10 @@ export default function Home() {
                     />
                   ))}
                 </div>
-                {/* Desktop+: Single row with horizontal scroll */}
-                <div className="hidden lg:flex lg:gap-4 lg:overflow-x-auto lg:pb-4 scrollbar-hide">
-                  {randomMatches.slice(0, 12).map((user) => (
-                    <div key={user.id} className="flex-shrink-0 w-[calc(100%/6-20px*5/6)] 2xl:w-[calc(100%/8-16px*7/8)]">
-                      <UserCard
-                        {...user}
-                        variant="default"
-                        showActions={true}
-                      />
-                    </div>
-                  ))}
-                </div>
               </>
             )}
           </div>
+
           {/* Hot Dates Section */}
           <div className="px-4 lg:px-6 pb-8">
             <SectionHeader

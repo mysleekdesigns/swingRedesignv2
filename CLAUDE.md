@@ -142,4 +142,11 @@ The project is configured for shadcn/ui with:
 - Maintain theme consistency across components
 - Leverage existing UI components before creating new ones
 - Follow TypeScript strict mode requirements
-- everytime there is visual testing on the website app use playwright mcp to verify all the updates were successfully completed.
+- Use Playwright MCP for visual testing to verify all updates were successfully completed
+
+## Important Files
+
+- `components.json` - shadcn/ui configuration (New York style, Lucide icons)
+- Multiple backup files exist (*.backup) - do not modify these unless specifically requested
+- always check and remove EOF < /dev/null if its at the end of a file and its not supposed to be there
+- always kill all nextjs servers when your task is complete
