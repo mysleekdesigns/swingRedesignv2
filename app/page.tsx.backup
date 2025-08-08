@@ -45,10 +45,10 @@ export default function Home() {
     : '/images/Swing.png';
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background">
       {/* Mobile Header */}
       <header className="sidebar:hidden fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
-        <div className="flex items-center justify-between px-3 sm:px-4 py-3">
+        <div className="flex items-center justify-between px-4 py-3">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-2 hover:bg-muted rounded-lg transition-colors"
@@ -78,7 +78,7 @@ export default function Home() {
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         
         {/* Main Content */}
-        <main className="flex-1 sidebar:ml-64 pt-16 sidebar:pt-0 min-w-0">
+        <main className="flex-1 sidebar:ml-64 pt-16 sidebar:pt-0">
           {/* Desktop Header */}
           <div className="hidden sidebar:block sticky top-0 z-40 bg-background/80 backdrop-blur-xl border-b border-border">
             <div className="px-6 py-4">
@@ -112,8 +112,8 @@ export default function Home() {
           </div>
 
           {/* Stats Overview */}
-          <div className="px-3 sm:px-4 sidebar:px-6 py-6">
-            <div className="grid grid-cols-2 sidebar:grid-cols-4 gap-2 sm:gap-3 sidebar:gap-4">
+          <div className="px-4 sidebar:px-6 py-6">
+            <div className="grid grid-cols-4 gap-2 md:gap-4">
               <div className="bg-card rounded-xl p-3 md:p-4 border border-border hover:border-primary/50 transition-colors">
                 <div className="flex items-center justify-between mb-2">
                   <Eye className="w-5 h-5 text-primary" />
@@ -149,8 +149,8 @@ export default function Home() {
           </div>
 
           {/* Section Tabs */}
-          <div className="px-3 sm:px-4 sidebar:px-6 mb-6">
-            <div className="flex gap-1 sm:gap-2 pb-2 overflow-x-auto scrollbar-hide">
+          <div className="px-4 sidebar:px-6 mb-6">
+            <div className="flex gap-1 md:gap-2 pb-2">
               {[
                 { id: 'who-viewed', label: 'Who Viewed Me', icon: Eye, count: whoViewedMeUsers.length },
                 { id: 'newest', label: 'Newest Matches', icon: UserPlus, count: newestMatches.length },
@@ -160,7 +160,7 @@ export default function Home() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveSection(tab.id)}
-                  className={`flex items-center gap-1 md:gap-2 px-2 md:px-3 lg:px-4 py-2 rounded-lg font-medium transition-all text-xs md:text-sm whitespace-nowrap flex-shrink-0 ${
+                  className={`flex items-center gap-1 md:gap-2 px-2 md:px-3 lg:px-4 py-2 rounded-lg font-medium transition-all text-xs md:text-sm whitespace-nowrap flex-1 md:flex-initial justify-center md:justify-start min-w-0 ${
                     activeSection === tab.id
                       ? 'bg-primary text-primary-foreground'
                       : 'bg-card hover:bg-muted border border-border'
@@ -177,7 +177,7 @@ export default function Home() {
           </div>
 
           {/* Dynamic Content Grid */}
-          <div className="px-3 sm:px-4 sidebar:px-6 pb-8">
+          <div className="px-4 sidebar:px-6 pb-8">
             {activeSection === 'who-viewed' && (
               <>
                 <SectionHeader
@@ -315,7 +315,7 @@ export default function Home() {
             )}
           </div>
           {/* Hot Dates Section */}
-          <div className="px-3 sm:px-4 sidebar:px-6 pb-8">
+          <div className="px-4 sidebar:px-6 pb-8">
             <SectionHeader
               title="Hot Dates"
               subtitle="Upcoming events and meetups"
@@ -334,7 +334,7 @@ export default function Home() {
           </div>
 
           {/* Conventions Section */}
-          <div className="px-3 sm:px-4 sidebar:px-6 pb-20">
+          <div className="px-4 sidebar:px-6 pb-20">
             <SectionHeader
               title="Upcoming Conventions"
               subtitle="Major events across the country"
