@@ -163,13 +163,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           {/* User Profile Card */}
           <div className="p-4 border-b border-border">
             <div className="flex items-center gap-3">
-              <img 
-                src="/images/simon-avatar.jpg" 
-                alt="Simon Lacey" 
-                className="w-12 h-12 rounded-full object-cover border-2 border-primary/20" 
-              />              <div className="flex-1">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                <User className="w-6 h-6 text-primary" />
+              </div>
+              <div className="flex-1">
                 <p className="font-semibold">Welcome Back</p>
-                <p className="text-sm text-muted-foreground">Simon Lacey</p>
+                <p className="text-sm text-muted-foreground">Premium Member</p>
               </div>
             </div>
           </div>
