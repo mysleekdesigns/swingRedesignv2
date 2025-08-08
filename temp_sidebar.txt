@@ -12,6 +12,7 @@ import {
   MessageCircle,
   Star,
   Calendar,
+  MapPin,
   Users2,
   Globe,
   Plane,
@@ -23,29 +24,17 @@ import {
   Bell,
   TrendingUp,
   Shield,
-  Crown,
-  Palette,
-  Sun,
-  Moon,
-  Cpu
+  Crown
 } from "lucide-react";
-import { useSafeTheme } from "@/lib/theme-context";
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-interface ThemeItem {
-  name: string;
-  key: 'light' | 'dark' | 'bubble-gum' | 'cyberpunk';
-  icon: typeof Sun;
-}
-
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const [expandedSections, setExpandedSections] = useState<string[]>(['discover']);
-  const themeContext = useSafeTheme();
 
   const toggleSection = (section: string) => {
     setExpandedSections(prev =>
@@ -54,19 +43,6 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         : [...prev, section]
     );
   };
-
-  const handleThemeChange = (themeKey: 'light' | 'dark' | 'bubble-gum' | 'cyberpunk') => {
-    if (themeContext) {
-      themeContext.setTheme(themeKey);
-    }
-  };
-
-  const themeItems: ThemeItem[] = [
-    { name: 'Light Mode', key: 'light', icon: Sun },
-    { name: 'Dark Mode', key: 'dark', icon: Moon },
-    { name: 'Bubble Gum', key: 'bubble-gum', icon: Palette },
-    { name: 'Cyberpunk', key: 'cyberpunk', icon: Cpu },
-  ];
 
   const navigation = [
     {
@@ -108,11 +84,6 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         { name: 'Groups', href: '/groups', icon: Users },
         { name: 'Travel', href: '/travel', icon: Plane },
       ]
-    },
-    {
-      section: 'appearance',
-      title: 'Appearance',
-      themeItems: themeItems
     },
     {
       section: 'account',
@@ -190,8 +161,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </button>
                 {expandedSections.includes(section.section) && (
                   <div className="mt-1">
-                    {/* Regular navigation items */}
-                    {section.items && section.items.map((item) => {
+                    {section.items.map((item) => {
                       const isActive = pathname === item.href;
                       return (
                         <Link
@@ -217,25 +187,6 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                         </Link>
                       );
                     })}
-                    
-                    {/* Theme items for Appearance section */}
-                    {section.themeItems && section.themeItems.map((themeItem) => {
-                      const isActive = themeContext?.theme === themeItem.key;
-                      return (
-                        <button
-                          key={themeItem.name}
-                          onClick={() => handleThemeChange(themeItem.key)}
-                          className={`flex items-center gap-3 px-4 py-2 mx-2 rounded-lg transition-all w-full ${
-                            isActive
-                              ? 'bg-primary text-primary-foreground'
-                              : 'hover:bg-muted text-muted-foreground hover:text-foreground'
-                          }`}
-                        >
-                          <themeItem.icon className="w-4 h-4" />
-                          <span className="flex-1 text-sm text-left">{themeItem.name}</span>
-                        </button>
-                      );
-                    })}
                   </div>
                 )}
               </div>
@@ -257,6 +208,3 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           </div>
         </div>
       </aside>
-    </>
-  );
-}

@@ -1,6 +1,6 @@
 'use client'
 
-import { Moon, Sun, Palette, Cpu, Zap } from 'lucide-react'
+import { Moon, Sun, Palette, Cpu } from 'lucide-react'
 import { useSafeTheme } from '@/lib/theme-context'
 import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
