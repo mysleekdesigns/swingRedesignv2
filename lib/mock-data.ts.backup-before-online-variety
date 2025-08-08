@@ -215,7 +215,6 @@ export const whoIsOnUsers: User[] = [
 export const whoViewedMeUsers: User[] = [
   {
     id: '9',
-    isOnline: true,
     username: 'funcouple',
     age: 30,
     location: 'Pasadena',
@@ -236,7 +235,6 @@ export const whoViewedMeUsers: User[] = [
   },
   {
     id: '11',
-    isOnline: true,
     username: 'naughtytwo',
     age: 28,
     location: 'Culver City',
@@ -257,7 +255,6 @@ export const whoViewedMeUsers: User[] = [
   },
   {
     id: '13',
-    isOnline: true,
     username: 'adventureduo',
     age: 33,
     location: 'Playa Vista',
@@ -278,7 +275,6 @@ export const whoViewedMeUsers: User[] = [
   },
   {
     id: '21',
-    isOnline: true,
     username: 'sweetduo',
     age: 29,
     location: 'Torrance',
@@ -319,7 +315,6 @@ export const whoViewedMeUsers: User[] = [
   },
   {
     id: '25',
-    isOnline: true,
     username: 'sexycouple',
     age: 33,
     location: 'Calabasas',
@@ -344,7 +339,6 @@ export const whoViewedMeUsers: User[] = [
 export const newestMatches: User[] = [
   {
     id: '15',
-    isOnline: true,
     username: 'hotwife4u',
     age: 29,
     location: 'Brentwood',
@@ -365,7 +359,6 @@ export const newestMatches: User[] = [
   },
   {
     id: '17',
-    isOnline: true,
     username: 'couplesexy',
     age: 26,
     location: 'Redondo Beach',
@@ -386,7 +379,6 @@ export const newestMatches: User[] = [
   },
   {
     id: '19',
-    isOnline: true,
     username: 'playtime2',
     age: 30,
     location: 'Burbank',
@@ -407,7 +399,6 @@ export const newestMatches: User[] = [
   },
   {
     id: '27',
-    isOnline: true,
     username: 'dreamgirl',
     age: 25,
     location: 'Thousand Oaks',
@@ -428,7 +419,6 @@ export const newestMatches: User[] = [
   },
   {
     id: '29',
-    isOnline: true,
     username: 'hotmama',
     age: 29,
     location: 'Encino',
@@ -459,7 +449,6 @@ export const newestMatches: User[] = [
   },
   {
     id: '32',
-    isOnline: true,
     username: 'adventurous',
     age: 34,
     location: 'Glendale',

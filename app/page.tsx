@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import Image from "next/image";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { UserCard } from "@/components/ui/UserCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -48,9 +49,9 @@ export default function Home() {
             {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
           
-          <div className="flex items-center gap-2">
-            <img src="/swing-logo.png" alt="Swing" className="h-8" />
-            <span className="font-bold text-lg">SWING</span>
+          <div className="flex items-center justify-center">
+            <Image src="/images/Swing.png" alt="Swing" width={120} height={40} className="h-8 sm:h-10 w-auto" priority />
+          
           </div>
           
           <div className="flex items-center gap-2">
@@ -184,7 +185,7 @@ export default function Home() {
                   variant="glass"
                 />
                 {/* Mobile/Tablet: Grid with wrapping */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:hidden">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4 lg:hidden">
                   {whoViewedMeUsers.map((user) => (
                     <UserCard
                       key={user.id}
@@ -218,7 +219,7 @@ export default function Home() {
                   variant="glass"
                 />
                 {/* Mobile/Tablet: Grid with wrapping */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:hidden">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4 lg:hidden">
                   {newestMatches.map((user) => (
                     <UserCard
                       key={user.id}
@@ -252,7 +253,7 @@ export default function Home() {
                   variant="glass"
                 />
                 {/* Mobile/Tablet: Grid with wrapping */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:hidden">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4 lg:hidden">
                   {whoIsOnUsers.map((user) => (
                     <UserCard
                       key={user.id}
@@ -286,7 +287,7 @@ export default function Home() {
                   variant="glass"
                 />
                 {/* Mobile/Tablet: Grid with wrapping */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:hidden">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4 lg:hidden">
                   {randomMatches.map((user) => (
                     <UserCard
                       key={user.id}

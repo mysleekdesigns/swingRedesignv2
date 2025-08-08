@@ -28,79 +28,96 @@ export function UserCard({
   showActions = false,
   variant = 'default',
 }: UserCardProps) {
-  const aspectRatio = variant === 'compact' ? 'aspect-[4/5]' : 'aspect-[3/4]';
+  // Mobile-first aspect ratios with responsive enhancements
+  const aspectRatioClasses = {
+    compact: 'aspect-[4/5] sm:aspect-[3/4]',
+    featured: 'aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4]',
+    default: 'aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/4]'
+  };
+  
+  const aspectRatio = aspectRatioClasses[variant];
   
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-card hover-lift cursor-pointer transition-all duration-300 border border-border shadow-sm hover:shadow-xl hover:shadow-primary/5 dark:hover:shadow-primary/10">
+    <div className="group relative overflow-hidden rounded-xl bg-card hover-lift cursor-pointer transition-all duration-300 border border-border shadow-sm hover:shadow-xl hover:shadow-primary/5 dark:hover:shadow-primary/10 w-full">
       <div className={`${aspectRatio} relative overflow-hidden`}>
         <Image
           src={imageUrl}
           alt={`${username}'s profile photo`}
           fill
           className="object-cover transition-all duration-500 group-hover:scale-110 neon-cyberpunk:group-hover:saturate-150"
-          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+          sizes="(max-width: 480px) 50vw, (max-width: 768px) 33vw, (max-width: 1200px) 25vw, 20vw"
           priority={variant === 'featured'}
         />
         
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60" />
+        {/* Enhanced gradient overlay for better mobile readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 sm:to-black/60" />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         
-        {/* Status indicators with improved glassmorphism */}
+        {/* Enhanced online status indicator */}
         {isOnline && (
-          <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm border border-white/20">
-            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-xs font-medium text-white">Online</span>
+          <div className="absolute top-2 right-2 sm:top-3 sm:right-3 flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-2.5 rounded-full bg-black/50 sm:bg-black/40 backdrop-blur-sm border border-white/30 sm:border-white/20">
+            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-lg shadow-green-400/50" />
+            <span className="text-xs font-medium text-white hidden sm:inline">Online</span>
           </div>
         )}
         
+        {/* Photo count indicator - improved mobile visibility */}
         {photosCount && (
-          <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm border border-white/20">
-            <Camera className="w-3.5 h-3.5 text-white" />
+          <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-2.5 rounded-full bg-black/50 sm:bg-black/40 backdrop-blur-sm border border-white/30 sm:border-white/20">
+            <Camera className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />
             <span className="text-xs font-medium text-white">{photosCount}</span>
           </div>
         )}
         
-        {/* Action buttons for interactive cards with cyberpunk effects */}
+        {/* Always visible action buttons - mobile-first design */}
         {showActions && (
-          <div className="absolute top-1/2 right-3 transform -translate-y-1/2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute bottom-16 right-2 sm:bottom-20 sm:right-3 md:top-1/2 md:-translate-y-1/2 md:bottom-auto flex flex-row gap-2 md:flex-col md:opacity-70 md:group-hover:opacity-100 transition-opacity duration-300">
             <button 
-              className={`p-2.5 rounded-full bg-black/60 backdrop-blur-sm border hover:scale-110 transition-transform ${
-                isLiked ? 'bg-primary/80 border-primary text-white' : 'border-white/20 hover:bg-primary/60'
+              className={`p-2 sm:p-2.5 rounded-full backdrop-blur-sm border transition-all duration-200 active:scale-95 hover:scale-105 ${
+                isLiked 
+                  ? 'bg-primary/90 border-primary text-white shadow-lg shadow-primary/30' 
+                  : 'bg-black/60 border-white/30 hover:bg-primary/60 hover:border-primary/50 text-white'
               }`}
               aria-label={isLiked ? 'Unlike' : 'Like'}
             >
-              <Heart className={`w-4 h-4 ${isLiked ? 'text-white fill-white' : 'text-white'}`} />
+              <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isLiked ? 'fill-white' : ''}`} />
             </button>
             <button 
-              className="p-2.5 rounded-full bg-black/60 backdrop-blur-sm border border-white/20 hover:bg-primary/60 hover:scale-110 transition-all"
+              className="p-2 sm:p-2.5 rounded-full bg-black/60 backdrop-blur-sm border border-white/30 hover:bg-primary/60 hover:border-primary/50 hover:scale-105 active:scale-95 transition-all duration-200 text-white"
               aria-label="Send message"
             >
-              <MessageCircle className="w-4 h-4 text-white" />
+              <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
           </div>
         )}
         
-        {/* Content area */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
-          <div className="space-y-1.5">
-            <h3 className="text-lg font-bold text-white">
+        {/* Content area with enhanced mobile-first typography */}
+        <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+          <div className="space-y-1 sm:space-y-1.5">
+            <h3 className="text-base sm:text-lg font-bold text-white leading-tight">
               {username}, <span className="text-primary">{age}</span>
             </h3>
             
-            <div className="flex items-center gap-2 text-white/80">
-              <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
-              <span className="text-sm truncate">{location}</span>
+            <div className="flex items-center gap-1.5 sm:gap-2 text-white/80">
+              <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
+              <span className="text-xs sm:text-sm truncate font-medium">{location}</span>
               {distance && (
                 <>
-                  <span className="text-white/60">•</span>
-                  <span className="text-sm text-primary">{distance}</span>
+                  <span className="text-white/60 hidden sm:inline">•</span>
+                  <span className="text-xs sm:text-sm text-primary font-medium hidden sm:inline">{distance}</span>
                 </>
               )}
             </div>
             
+            {/* Mobile distance display */}
+            {distance && (
+              <div className="flex items-center gap-1.5 text-primary sm:hidden">
+                <span className="text-xs font-medium">{distance} away</span>
+              </div>
+            )}
+            
             {viewedTime && (
-              <p className="text-xs text-white/60 bg-black/30 rounded-full px-2 py-0.5 inline-block">
+              <p className="text-xs text-white/70 bg-black/40 rounded-full px-2 py-1 inline-block backdrop-blur-sm">
                 {viewedTime}
               </p>
             )}
@@ -110,3 +127,4 @@ export function UserCard({
     </div>
   );
 }
+
