@@ -30,7 +30,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       document.documentElement.classList.add('dark')
     } else if (initialTheme === 'bubble-gum') {
       document.documentElement.classList.add('bubble-gum')
-    } else if (initialTheme === 'neon-cyberpunk') {
+        } else if (initialTheme === 'neon-cyberpunk') {
       document.documentElement.classList.add('neon-cyberpunk', 'dark')
     }
   }, [])
@@ -39,14 +39,18 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Only allow theme changes after mount to prevent SSR issues
     if (!mounted) return
     
-    // Cycle through four themes: light -> dark -> bubble-gum -> neon-cyberpunk -> light
+    // Cycle through six themes: light -> dark -> bubble-gum -> cyberpunk -> neon-cyberpunk -> amber -> light
     let newTheme: Theme
     if (theme === 'light') {
       newTheme = 'dark'
     } else if (theme === 'dark') {
       newTheme = 'bubble-gum'
     } else if (theme === 'bubble-gum') {
+      newTheme = 'cyberpunk'
+    } else if (theme === 'cyberpunk') {
       newTheme = 'neon-cyberpunk'
+    } else if (theme === 'neon-cyberpunk') {
+      newTheme = 'amber'
     } else {
       newTheme = 'light'
     }
@@ -66,8 +70,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       document.documentElement.classList.add('dark')
     } else if (newTheme === 'bubble-gum') {
       document.documentElement.classList.add('bubble-gum')
+    } else if (newTheme === 'cyberpunk') {
+      document.documentElement.classList.add('cyberpunk', 'dark')
     } else if (newTheme === 'neon-cyberpunk') {
       document.documentElement.classList.add('neon-cyberpunk', 'dark')
+    } else if (newTheme === 'amber') {
+      document.documentElement.classList.add('amber')
     }
   }
   

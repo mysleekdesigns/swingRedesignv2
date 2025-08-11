@@ -27,9 +27,9 @@ import {
   Palette,
   Sun,
   Moon,
-  
+  Cpu,
   Zap,
-  
+  Gem
 } from "lucide-react";
 import { useSafeTheme, useTheme } from "@/lib/theme-context";
 
@@ -40,7 +40,7 @@ interface SidebarProps {
 
 interface ThemeItem {
   name: string;
-  key: 'light' | 'dark' | 'bubble-gum' | 'neon-cyberpunk';
+  key: 'light' | 'dark' | 'bubble-gum' | 'cyberpunk' | 'neon-cyberpunk' | 'amber';
   icon: typeof Sun;
 }
 
@@ -63,7 +63,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
     );
   };
 
-  const handleThemeChange = (themeKey: 'light' | 'dark' | 'bubble-gum' | 'neon-cyberpunk') => {
+  const handleThemeChange = (themeKey: 'light' | 'dark' | 'bubble-gum' | 'cyberpunk' | 'neon-cyberpunk' | 'amber') => {
     if (themeContext) {
       themeContext.setTheme(themeKey);
     }
@@ -73,7 +73,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
     { name: 'Light Mode', key: 'light', icon: Sun },
     { name: 'Dark Mode', key: 'dark', icon: Moon },
     { name: 'Bubble Gum', key: 'bubble-gum', icon: Palette },
-    { name: 'Cyberpunk', key: 'neon-cyberpunk', icon: Zap },
+    { name: 'Cyberpunk', key: 'cyberpunk', icon: Cpu },
+    { name: 'Neon Cyberpunk', key: 'neon-cyberpunk', icon: Zap },
+    { name: 'Amber', key: 'amber', icon: Gem },
   ];
 
   const navigation = [

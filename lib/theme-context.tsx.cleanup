@@ -30,7 +30,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       document.documentElement.classList.add('dark')
     } else if (initialTheme === 'bubble-gum') {
       document.documentElement.classList.add('bubble-gum')
-    } else if (initialTheme === 'neon-cyberpunk') {
+        } else if (initialTheme === 'neon-cyberpunk') {
       document.documentElement.classList.add('neon-cyberpunk', 'dark')
     }
   }, [])
@@ -47,7 +47,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       newTheme = 'bubble-gum'
     } else if (theme === 'bubble-gum') {
       newTheme = 'neon-cyberpunk'
-    } else {
+            } else {
       newTheme = 'light'
     }
     

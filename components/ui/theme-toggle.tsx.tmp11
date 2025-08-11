@@ -108,6 +108,7 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
   const getThemeLabel = () => {
     if (currentTheme === 'dark') return 'Dark Mode'
     if (currentTheme === 'bubble-gum') return 'Bubble Gum'
+    if (currentTheme === 'cyberpunk') return 'Cyberpunk'
     if (currentTheme === 'neon-cyberpunk') return 'Neon Cyberpunk'
     if (currentTheme === 'amber') return 'Amber'
     return 'Light Mode'

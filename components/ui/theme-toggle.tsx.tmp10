@@ -99,15 +99,14 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
       return <Moon className="h-5 w-5" />
     } else if (currentTheme === 'bubble-gum') {
       return <Palette className="h-5 w-5" />
-    } else if (currentTheme === 'neon-cyberpunk') {
-      return <Zap className="h-5 w-5" />
-    }
+    } else if (currentTheme === 'neon-cyberpunk') {      return <Zap className="h-5 w-5" />
     return <Sun className="h-5 w-5" />
   }
 
   const getThemeLabel = () => {
     if (currentTheme === 'dark') return 'Dark Mode'
     if (currentTheme === 'bubble-gum') return 'Bubble Gum'
+    if (currentTheme === 'cyberpunk') return 'Cyberpunk'
     if (currentTheme === 'neon-cyberpunk') return 'Neon Cyberpunk'
     if (currentTheme === 'amber') return 'Amber'
     return 'Light Mode'
