@@ -1,6 +1,6 @@
 'use client'
 
-import { Moon, Sun, Palette, Cpu, Zap, Gem } from 'lucide-react'
+import { Moon, Sun, Palette, Zap } from 'lucide-react'
 import { useSafeTheme } from '@/lib/theme-context'
 import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
@@ -109,7 +109,6 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
     if (currentTheme === 'dark') return 'Dark Mode'
     if (currentTheme === 'bubble-gum') return 'Bubble Gum'
     if (currentTheme === 'neon-cyberpunk') return 'Neon Cyberpunk'
-    if (currentTheme === 'amber') return 'Amber'
     return 'Light Mode'
   }
 
@@ -212,16 +211,6 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
             <span>Bubble Gum</span>
           </DropdownMenuItem>
           <DropdownMenuItem 
-            onClick={() => handleThemeChange('cyberpunk')}
-            className={cn(
-              "flex items-center gap-2",
-              currentTheme === 'cyberpunk' && "bg-accent"
-            )}
-          >
-            <Cpu className="h-4 w-4" />
-            <span>Cyberpunk</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem 
             onClick={() => handleThemeChange('neon-cyberpunk')}
             className={cn(
               "flex items-center gap-2",
@@ -230,16 +219,6 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
           >
             <Zap className="h-4 w-4" />
             <span>Neon Cyberpunk</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem 
-            onClick={() => handleThemeChange('amber')}
-            className={cn(
-              "flex items-center gap-2",
-              currentTheme === 'amber' && "bg-accent"
-            )}
-          >
-            <Gem className="h-4 w-4" />
-            <span>Amber</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -318,16 +297,6 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
           <span>Bubble Gum</span>
         </DropdownMenuItem>
         <DropdownMenuItem 
-          onClick={() => handleThemeChange('cyberpunk')}
-          className={cn(
-            "flex items-center gap-2",
-            currentTheme === 'cyberpunk' && "bg-accent"
-          )}
-        >
-          <Cpu className="h-4 w-4" />
-          <span>Cyberpunk</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem 
           onClick={() => handleThemeChange('neon-cyberpunk')}
           className={cn(
             "flex items-center gap-2",
@@ -336,16 +305,6 @@ export function ThemeToggle({ className, variant = 'button' }: ThemeToggleProps)
         >
           <Zap className="h-4 w-4" />
           <span>Neon Cyberpunk</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem 
-          onClick={() => handleThemeChange('amber')}
-          className={cn(
-            "flex items-center gap-2",
-            currentTheme === 'amber' && "bg-accent"
-          )}
-        >
-          <Gem className="h-4 w-4" />
-          <span>Amber</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
