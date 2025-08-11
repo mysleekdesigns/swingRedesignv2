@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import {
   Home,
   Users,
@@ -154,7 +155,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <div className="p-4 border-b border-border">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <img src={logoSrc} alt="Swing" className="h-10 w-auto" />
+                <Image src={logoSrc} alt="Swing" width={120} height={40} className="h-10 w-auto" />
                 <div>
                   <h1 className="text-sm font-normal text-muted-foreground" style={{lineHeight: "1.15em"}}>Alternative Lifestyle Dating Community</h1>
                 </div>
@@ -171,9 +172,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           {/* User Profile Card */}
           <div className="p-4 border-b border-border">
             <div className="flex items-center gap-3">
-              <img 
+              <Image 
                 src="/images/simon-avatar.jpg" 
                 alt="Simon Lacey" 
+                width={48}
+                height={48}
                 className="w-12 h-12 rounded-full object-cover border-2 border-primary/20" 
               />
               <div className="flex-1">
